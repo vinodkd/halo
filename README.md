@@ -3,7 +3,8 @@ The HALO Programming Language
 
 **HALO** is an experimental programming language. Here are some of the things it attempts to do:
 
-* Model all software as having 4 layers - Human, Application, Language and OS (hence the name); and built using components.
+* Model all software as having multiple nested layers, each of which can be one of 4 types - Human, Application, Language and OS (hence the name).
+* Model all software as being built of components - the definition of which is decided by the human involved.
 * Model data (and therefore code representation) as graphs.
 * Model programs as actions on graphs.
 * Model multi-language applications as unified graphs.
@@ -13,18 +14,19 @@ The HALO Programming Language
 * Model multi-level abstraction and/or optimization of software.
 
 It is intended to:
-* Enable full-lifecycle representation of all coding artifacts - from design to maintenance.
+
+* Enable full-lifecycle representation of all coding artifacts - from design to maintenance and beyond.
 * Enable cross-language code analysis for dependency, quality, etc.
 * Enable building multi-language component-based software.
 * Enable large scale change of software
 
 Status
 ------
-Halo is currently a prototype of the lofty goals listed above. This prototype is based on nodejs and uses nodejs as the OS and javascript as the language. I hope to go beyond this once the basic use and value of the ideas presented here are proven to be useful.
+Halo is currently a prototype of the lofty goals listed above. This prototype is based on nodejs and uses nodejs as the OS and Javascript as the language. I hope to go beyond this platform once the basic use and value of the ideas presented here are proven to be useful.
 
 History
 -------
-HALO is the public version of a long-running personal project of mine unimaginatively called "plnext" - for the next programming language. There are two pieces in plnext - a language called **jack** and an associated IDE called **fluent**. I have written a number of blog posts about the grand vision for this programming language and the IDE. Halo is a prototype for jack and may well be what it ultimately becomes. We'll see :).
+HALO is the public version of a long-running personal project of mine unimaginatively called "plnext" - for the next programming language. There are two pieces in plnext - a [language called **jack**](http://tbd) and an associated [IDE called **fluent**](http://tbd). I have written a number of blog posts about the grand vision for this programming language and the IDE. Halo is a prototype for jack and may well be what it ultimately becomes. We'll see :).
 
 Download
 --------
@@ -40,6 +42,7 @@ Getting started
 1. Run `halo` to enter an interactive shell
 2. Run `halo [file|dir]` to read a file or directory (and potentially "run" something)
 3. Run `halo action [options] [file|dir]` to have an `action` act on a file or directory.
+4. Run `halo gui` to see halo's native IDE
 
 Here're specific examples of the 3 modes above to show halo's features:
 
@@ -51,7 +54,9 @@ Here're specific examples of the 3 modes above to show halo's features:
 	* eg, run `halo analyze test/object.halo` to get a graph analysis of that file.
 * Run the `viz` action on any of the files above to get a graphviz output of the contents
 	* eg, run `halo viz test/object.halo` to get a dot file output of that file.
-	* You can now run `dot -Tsvg -o output.svg object.dot` to get an svg display of `object.halo`
+	* You can now run `dot -Tsvg -o output.svg object.dot` or run `halo viz -Tsvg test/object.halo` to get an svg display of `object.halo`.
 * Run `halo viz test/spa.halo` to visualize the structure and behavior of a single page js app (as documented in that file)
 * Run `halo viz test/abs_todomvc.halo` to visualize the structure and behavior of of an app that inherits from `spa.halo`.
-* Run `halo `
+* Run `halo run test/ssi.halo` to see a simple imperative machine at work. It's called ssi since it models the 3 basic imperative operations - [sequence, selection and iteration](http://tbd)
+* Run `halo run test/fizzbuzz.halo` to see a single-language app in action.
+* Run `halo run test/todomvc/main.halo` to see a multi-language app in action.
