@@ -1,0 +1,4 @@
+#!/usr/bin/env node
+
+var numargs = process.argv.length;
+console.log(numargs);

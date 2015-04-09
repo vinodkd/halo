@@ -1,11 +1,14 @@
 {
-  "name": "halo-lang",
+  "name": "halolang",
   "version": "0.0.1",
   "description": "An experimental programming language based on graphs and components.",
   "main": "halo",
   "directories": {
     "doc": "doc"
   },
+  "bin": {
+    "halo":"halo"
+    },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

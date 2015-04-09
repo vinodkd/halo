@@ -15,4 +15,10 @@ Resources:
 * http://tutorialzine.com/2014/09/creating-your-first-node-js-command-line-application/
 * https://quickleft.com/blog/creating-and-publishing-a-node-js-module/
 
+**Thu Apr  9 08:03:13 2015** : Created basic node module and linked it to global list. Commands:
+	
+	npm init
+	<<edit package.json to add bin>>
+	npm link
+
 
