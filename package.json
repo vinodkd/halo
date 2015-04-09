@@ -1,0 +1,24 @@
+{
+  "name": "halo-lang",
+  "version": "0.0.1",
+  "description": "An experimental programming language based on graphs and components.",
+  "main": "halo",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "programming",
+    "language",
+    "halo",
+    "jack",
+    "fluent"
+  ],
+  "author": "Vinod Dinakaran <vinod.dinakaran@gmail.com> (vinodkd.org)",
+  "license": "MIT",
+  "dependencies": {
+    "pegjs": "^0.8.0"
+  }
+}

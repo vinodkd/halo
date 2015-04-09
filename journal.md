@@ -10,4 +10,9 @@ Entries
 
 **Wed Apr  8 08:54:41 2015** : Right now creating the readme. My intention this time around is to start with the end user documentation and slowly bring in working pieces from the plnext source - making them uniform as I go along.
 
+**Wed Apr  8 18:28:43 2015** : Was reading up on how to create a node module and make it runnable as a command line app.
+Resources: 
+* http://tutorialzine.com/2014/09/creating-your-first-node-js-command-line-application/
+* https://quickleft.com/blog/creating-and-publishing-a-node-js-module/
+
 
