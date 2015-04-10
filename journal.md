@@ -21,4 +21,9 @@ Resources:
 	<<edit package.json to add bin>>
 	npm link
 
+**Thu Apr  9 08:23:12 2015** : Created basic halo shell script and parsed cmd line params. now need to move stuff from pegjs/jack to halolang/halo.
+
+**Thu Apr  9 18:02:54 2015** : need to be able to flip on logging without changing code. so log() = log level 1, log(msg,2) = log level 2 and so forth. unsetting the env var or cmd line param should turn off all logging.
+
+**Fri Apr 10 08:50:27 2015** : basic logging done now.
 

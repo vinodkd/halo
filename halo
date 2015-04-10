@@ -1,4 +1,20 @@
 #!/usr/bin/env node
+var logger = require("./lib/log.js");
+// require("lib/halo.js");
 
-var numargs = process.argv.length;
-console.log(numargs);
+var log = logger.log;
+
+main();
+
+function main(){
+	var numargs = process.argv.length;
+	log(numargs);
+
+	var srcRef  = numargs > 2 ? process.argv[numargs-1] : ".";
+	var action  = numargs > 3 ? process.argv[2] : "read";
+	var options = numargs > 4 ? process.argv.slice(3,numargs-1) : [];
+
+	log("srcRef:" + srcRef);
+	log("action:" + action);
+	log("options:" + options,2);
+}
