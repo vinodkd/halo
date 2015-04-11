@@ -1,0 +1,25 @@
+/* 
+This is a simple turning machine.
+It supports the basic operations required, ie, Sequence, Selection and Iteration.
+
+It does this in the simplest possible way:
+- sequence is just a list of steps. no data or variables.
+- selection is the only built in "form" - the if node.
+- iteration is through edges from the if node to other nodes in the sequence.
+ */
+m1 [lang = ssi] {
+	sequence{
+		// the #stepA is a local anchor
+		"ls -al" [key=val,#stepA]
+		// this shows two steps in the same line
+		"ps -ef" "df -h"
+		if{
+			// condition is evaluated in the base language
+			"expr 2 \> 1"
+			// edges to other nodes in the sequence
+			--> stepD
+			--> stepA[test=blah]
+		}
+		"echo done" [#stepD]
+	}
+}

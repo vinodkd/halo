@@ -1,14 +1,12 @@
 #!/usr/bin/env node
-var logger = require("./lib/log.js");
-// require("lib/halo.js");
-
-var log = logger.log;
+var log = require("./lib/log.js").log;
+var halolib = require("./lib/halo.js");
 
 main();
 
 function main(){
 	var numargs = process.argv.length;
-	log(numargs);
+	log("halo starting with: " + numargs);
 
 	var srcRef  = numargs > 2 ? process.argv[numargs-1] : ".";
 	var action  = numargs > 3 ? process.argv[2] : "read";
@@ -16,5 +14,12 @@ function main(){
 
 	log("srcRef:" + srcRef);
 	log("action:" + action);
-	log("options:" + options,2);
+	log("options:" + options);
+
+	// load calls parser and loads srcref into mem context
+	var src = halolib.load(srcRef);
+	if(action != 'read'){
+		halolib.do(action,options,src);
+	}
 }
+

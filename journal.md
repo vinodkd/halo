@@ -27,3 +27,12 @@ Resources:
 
 **Fri Apr 10 08:50:27 2015** : basic logging done now.
 
+**Fri Apr 10 17:33:24 2015** : Got basic structure of halo.js done, now need to flesh out the actual loading and parsing of a test file. However, one side thought: halo.js should do error reporting through the hout context in graph syntax, not through log.js. Will change that once the basic loading of files is done.
+
+**Fri Apr 10 17:38:03 2015** : Was about to change the regex to match for ctx beginning. Need to look up how js does regexes.
+
+**Sat Apr 11 12:31:22 2015** : Added the basics of actual execution:
+  - added code in halo binary
+  - created lib/halo.js to hold the logic used in the binary
+  - copied the old dotformat.js as haloparser.js. This will be replaced with a generated file soon; right now it confirms that once i have the generated file in place, things will work	
+  - created a basic file context and loaded a sample file
