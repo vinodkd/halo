@@ -36,3 +36,17 @@ Resources:
   - created lib/halo.js to hold the logic used in the binary
   - copied the old dotformat.js as haloparser.js. This will be replaced with a generated file soon; right now it confirms that once i have the generated file in place, things will work	
   - created a basic file context and loaded a sample file
+
+**Sat Apr 11 12:33:09 2015** : Next steps:
+
+- bring pegjs parser in.
+- create context.js and move context logic there.
+
+**Sat Apr 11 18:53:28 2015** : Chose to do no. 2 from list above first. Committing lots of changes that cannot be itemized due to issue with git gui:
+- Added an err function in log.js and wrapped halo.js.load() using it.
+- moved the ref parsing logic to refs.js
+- moved the context loading logic to contexts.js
+- created a contexts dir and added file.js to it
+- created actions.js and called it from halo.js.do()
+- created actions dir and added a stub viz.js action to it.
+
