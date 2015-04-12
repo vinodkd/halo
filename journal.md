@@ -61,7 +61,7 @@ Resources:
 
 **Sat Apr 11 20:06:40 2015** : Next steps:
 
-- correct readme to reflect currently doable things.
+- <s>correct readme to reflect currently doable things.</s>
 - fix ssi.js to work only when base attributes are provided with the current strings.
 - change syntax to include \`-quoted strings; change parser logic to convert these into normal base attrs.
 - create an ssi2.js that uses this new format
@@ -69,3 +69,24 @@ Resources:
 - add the reference syntax into the parser
 
 **Sat Apr 11 20:28:25 2015** : fixed the readme to reflect only ssi working currently.
+
+**Sat Apr 11 21:12:24 2015** : Need to resolve how to handle "running". current jack practice is to look at the lang attr and auto run files when presented with `jack file`. With halo, `read` is the default, so `run` will have to be explicitly stated. That still doesnt resolve how to figure out the language. should it still be lang? I guess.
+
+**Sat Apr 11 21:14:49 2015** : getting a lot of errors with git gui. Downloading latest git from git-scm. Have to install it and use instructions in http://coolestguidesontheplanet.com/install-update-latest-version-git-mac-osx-10-9-mavericks/ to point to it vs xcode version.
+
+**Sun Apr 12 02:30:25 2015** : Next steps:
+
+- <s>correct readme to reflect currently doable things.</s>
+- do things in the order of the readme's get started section.
+	- primitives
+- fix ssi.js to work only when base attributes are provided with the current strings.
+- change syntax to include \`-quoted strings; change parser logic to convert these into normal base attrs.
+- create an ssi2.js that uses this new format
+- create hin and hout contexts and switch all logging to that
+- add the reference syntax into the parser
+
+**Sun Apr 12 06:09:24 2015** : Still trying to figure out why the nqstring rule wont work correctly. latest: added all strings that are used in the language to stop parsing them as part of nqstring.
+
+**Sun Apr 12 06:58:01 2015** : Got the text rule to be redefined such that non-quoted strings now can be anything other than the symbols used in syntax, ie they're that much closer to the lang they're written in. All of this is so that primitives from the base language can be allowed to be expressed naturally.
+
+Next up: actually creating the test primitives files.

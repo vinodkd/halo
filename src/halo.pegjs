@@ -59,9 +59,12 @@ generic = "-" 								{ return 'rel'; }
 desc = (text / "") 							{ return text(); }
 
 text = _ s:(qstring / nqstring) _			{ return s; }
-qstring = '"' chars: qchar* '"'				{ return chars.join(''); }
-nqstring = s:('_' / [a-zA-Z0-9])+ 			{ return s.join(''); }
-qchar = !('"') . 							{ return text(); }
+qstring = '"' chars: nqchar* '"'			{ return chars.join(''); }
+nqstring = s:nwchar+ 						{ return s.join(''); }
+/* Still not clear what the . at the end does, but it hangs without it :) */
+nqchar = !('"') . 							{ return text(); }
+nwchar = ![ \t\n\r\{\}\[\]\:=#\>\/\|\*\",\-] .
+											{ return text(); }
 
 cmt = _ "/*" cc:cchar* "*/" _				{ return cc.join(''); }
 	/ _ "//" cl:clchar* [\r\n]+	_			{ return cl.join(''); }
