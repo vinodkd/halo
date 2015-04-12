@@ -50,3 +50,11 @@ Resources:
 - created actions.js and called it from halo.js.do()
 - created actions dir and added a stub viz.js action to it.
 
+**Sat Apr 11 18:56:17 2015** : Now to bring the pegjs version of the parser in.
+
+**Sat Apr 11 20:03:16 2015** : Basic move of the pegjs based parser into the halo codebase.
+- deleted lib/haloparser.js
+- changed reference to haloparser in halo.js to parser
+- moved dotformat.pegjs as src/halo.pegjs
+- setup script in package.json to generate parser.js from this source
+- added lib/parser.js to the .gitignore file.
