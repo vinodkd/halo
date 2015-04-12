@@ -67,3 +67,5 @@ Resources:
 - create an ssi2.js that uses this new format
 - create hin and hout contexts and switch all logging to that
 - add the reference syntax into the parser
+
+**Sat Apr 11 20:28:25 2015** : fixed the readme to reflect only ssi working currently.
