@@ -30,11 +30,21 @@ HALO is the public version of a long-running personal project of mine unimaginat
 
 Download
 --------
-Halo is an npm installable application. Run:
+Halo is an npm-installable application. Run:
 
 	[sudo] npm install halo
 
 ... to install it.
+
+Dependencies
+-------------
+
+Halo uses [Graphviz](http://graphviz.org) to visualize its data. If you dont use the `viz` action, you will be unaffected.
+
+Documentation
+--------------
+
+See `docs` for documentation on the language and its features.
 
 Getting started
 ---------------
@@ -63,5 +73,6 @@ Getting started
 <!-- * Run `halo viz test/spa.halo` to visualize the structure and behavior of a single page js app (as documented in that file) -->
 <!-- * Run `halo viz test/abs_todomvc.halo` to visualize the structure and behavior of of an app that inherits from `spa.halo`. -->
 <!-- * Run `halo run test/ssi.halo` to see a simple imperative machine at work. It's called ssi since it models the 3 basic imperative operations - [sequence, selection and iteration](http://en.wikipedia.org/wiki/Structured_programming#Control_structures)
+ -->
 <!-- * Run `halo run test/fizzbuzz.halo` to see a single-language app in action. -->
 <!-- * Run `halo run test/todomvc/main.halo` to see a multi-language app in action. -->
