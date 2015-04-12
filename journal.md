@@ -58,3 +58,12 @@ Resources:
 - moved dotformat.pegjs as src/halo.pegjs
 - setup script in package.json to generate parser.js from this source
 - added lib/parser.js to the .gitignore file.
+
+**Sat Apr 11 20:06:40 2015** : Next steps:
+
+- correct readme to reflect currently doable things.
+- fix ssi.js to work only when base attributes are provided with the current strings.
+- change syntax to include \`-quoted strings; change parser logic to convert these into normal base attrs.
+- create an ssi2.js that uses this new format
+- create hin and hout contexts and switch all logging to that
+- add the reference syntax into the parser
