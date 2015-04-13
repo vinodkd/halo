@@ -1,0 +1,29 @@
+//hashtable.halo
+hashtables{
+	// simple name-value pair
+	// nodes in halo are values by default. names can be set as attributes.
+	// these are values in the hashtables graph
+	value1[#name1]
+	value2[#name2]
+	value3[#name3]
+	
+	// another way is to have attributes on a single node
+	hashtable [
+		name1 = value1
+		name2 = value2
+		name3 = value3
+	]
+
+	// if you want values that are compound themselves, here's how:
+
+	hashtable2 {
+		name1 {
+			value11
+			value12
+		}
+		name2 {
+			value21
+			value22
+		}
+	}
+}
