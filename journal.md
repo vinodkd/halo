@@ -79,6 +79,7 @@ Resources:
 - <s>correct readme to reflect currently doable things.</s>
 - do things in the order of the readme's get started section.
 	- <s>primitives</s>
+	- <s>array</s>
 - fix ssi.js to work only when base attributes are provided with the current strings.
 - change syntax to include \`-quoted strings; change parser logic to convert these into normal base attrs.
 - create an ssi2.js that uses this new format
