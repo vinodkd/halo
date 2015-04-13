@@ -90,3 +90,5 @@ Resources:
 **Sun Apr 12 06:58:01 2015** : Got the text rule to be redefined such that non-quoted strings now can be anything other than the symbols used in syntax, ie they're that much closer to the lang they're written in. All of this is so that primitives from the base language can be allowed to be expressed naturally.
 
 Next up: actually creating the test primitives files.
+
+**Mon Apr 13 17:37:18 2015** : Added a basic test harness using npm's scripts and bash as part of primitives testing.

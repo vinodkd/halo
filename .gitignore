@@ -1,2 +1,4 @@
 node_modules
 lib/parser.js
+testoutput.log
+

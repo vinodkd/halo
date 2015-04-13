@@ -36,6 +36,12 @@ Halo is an npm-installable application. Run:
 
 ... to install it.
 
+Run:
+
+	npm test
+
+... to run a test on all included sample source.
+
 Dependencies
 -------------
 

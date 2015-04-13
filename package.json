@@ -11,7 +11,8 @@
     },
   "scripts": {
     "gen" : "if [ src/halo.pegjs -nt lib/parser.js ]; then echo generating...; pegjs src/halo.pegjs lib/parser.js ; echo done; fi",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "pretest" : "npm run gen",
+    "test": "./runtests.sh"
   },
   "keywords": [
     "programming",
