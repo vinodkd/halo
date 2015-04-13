@@ -1,0 +1,34 @@
+//object.halo
+objects{
+	object {
+		valueMember1
+		compoundMember2 {
+			childValue1
+			compoundChild2 {
+				value1
+				value2
+				// this is actually another "value"
+				....
+			}
+		}
+	}
+
+	// a list of students
+	students {
+		student1 {
+			john
+			smith
+			gpa { 3.45 }
+		}
+		student2 {
+			john
+			doe
+			gpa { 2.45 }
+		}
+		student3 {
+			jane
+			clark
+			gpa { 4.45 }
+		}
+	}
+}
