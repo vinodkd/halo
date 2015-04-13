@@ -1,0 +1,23 @@
+//primitives.halo
+// ... where you learn that halo is basically an untyped (or stringly typed) language :)
+primitives {
+	// integer
+	123
+	
+	// signed int
+	// - is used in halo syntax, so has to be quoted
+	"-123"
+
+	// real
+	// the . is used in halo syntax, so has to be quoted
+	"123.45"
+	
+	// e notation
+	"123.45e-10"
+
+	// strings: the two words are two nodes in halo
+	hello world
+
+	// string: this is one node
+	"hello world"
+}

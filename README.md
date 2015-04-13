@@ -59,9 +59,10 @@ Getting started
 
 <!-- 4. Run `halo gui` to see halo's native IDE -->
 
-<!-- Here're some specific examples that show halo's features: -->
+Here're some specific examples that show halo's features:
 
-<!-- * See `test/primitives.halo` to see how primitive data types can be represented in the halo data format. -->
+* See `test/primitives.halo` to see how primitive data types can be represented in the halo data format.
+
 <!-- * See `test/array.halo` to see how arrays can be represented in the halo data format. -->
 <!-- * See `test/hashtable.halo` to see one way of representing hashtables in the halo data format. -->
 <!-- * See `test/object.halo` to see how objects can be represented in the halo data format. -->
