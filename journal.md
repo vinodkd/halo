@@ -95,3 +95,21 @@ Resources:
 Next up: actually creating the test primitives files.
 
 **Mon Apr 13 17:37:18 2015** : Added a basic test harness using npm's scripts and bash as part of primitives testing.
+
+**Wed Apr 15 09:15:44 2015** : new ideas for syntax:
+
+- change "#" to "&" to "#" can be used for hashtags
+- node "name" should be optional and equal to alias. this way anonymous nodes can be created with "names" based on value hash alone. these two syntaxes will be equivalent:
+
+	name { ... }
+	[&name] { ... }
+
+... and this syntax should be invalid
+
+	name [&alias] { ... }
+
+- non-quoted syntax for nodes should support "-" and ".". This will allow numbers to be represented without quoting. This needs checking the peg syntax since edges are also represented with one dash followed by relation descriptor followed by another dash. so potentially something like `123e-10 234e-5` could be considered an edge between `123e` and `5` with a description of `10 234e`. The mitigations are that all edges are directed, so the second dash will have to be followed with another symbol, and that is that such a description will have to be quoted, so we should be good ,but getting this into the parser will be tough.
+
+**Thu Apr 16 09:58:57 2015** : Still working on getting run.js and ssi.js to work together. running ssi.js from halo.js works, but calling it from run.js doesnt. must be some module deps issue, but cannot figure it out yet
+
+**Thu Apr 16 10:04:15 2015** : Figured it out. no module deps issue. run.js should actually run the executor after it loads it, which it wasnt :)
