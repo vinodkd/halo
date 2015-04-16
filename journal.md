@@ -113,3 +113,9 @@ Next up: actually creating the test primitives files.
 **Thu Apr 16 09:58:57 2015** : Still working on getting run.js and ssi.js to work together. running ssi.js from halo.js works, but calling it from run.js doesnt. must be some module deps issue, but cannot figure it out yet
 
 **Thu Apr 16 10:04:15 2015** : Figured it out. no module deps issue. run.js should actually run the executor after it loads it, which it wasnt :)
+
+**Thu Apr 16 10:37:52 2015** : - Added returns to do(),run.js and ssi.js so that they can be used both from the command line and as functions
+- replaced ssi.js.baseExecute() with a call to actions/exec.js
+- changed the main runner - halo - to return the code from execution to the environment.
+- commented out all the try/catch blocks since they were preventing display of the stacktrace
+
