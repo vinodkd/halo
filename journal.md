@@ -119,3 +119,18 @@ Next up: actually creating the test primitives files.
 - changed the main runner - halo - to return the code from execution to the environment.
 - commented out all the try/catch blocks since they were preventing display of the stacktrace
 
+**Thu Apr 16 10:39:38 2015** : Now taking up the change to make ssi run baseexec only if the attribute is on the node.
+Started making change to ssi execute() when train reached. later.
+
+**Thu Apr 16 18:02:22 2015** : Completed the change to make ssi run baseexe only if attr is in node. ssi.js needs clean up and migration to the log() call instead of console.log
+
+Now changes for ssi have broken the other tests. need to fix that.
+
+**Thu Apr 16 19:21:47 2015** : fixed the issue by moving the return in halo into the if block - as it should be.
+
+**Thu Apr 16 19:22:06 2015** : Commiting changes:
+- added log to ssi and used it in one place.
+- added check to ssi that it will execute a step with base only if the attr lang=os/base is present
+- changed ssi.halo to work with new expectations in code
+
+

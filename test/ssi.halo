@@ -10,9 +10,9 @@ It does this in the simplest possible way:
 m1 [lang = ssi] {
 	sequence{
 		// the #stepA is a local anchor
-		"ls -al" [key=val,#stepA]
+		"ls -al" [lang=os,#stepA]
 		// this shows two steps in the same line
-		"ps -ef" "df -h"
+		"ps -ef" [lang=os] "df -h" [lang=os]
 		if{
 			// condition is evaluated in the base language
 			"expr 2 \> 1"
@@ -20,6 +20,6 @@ m1 [lang = ssi] {
 			--> stepD
 			--> stepA[test=blah]
 		}
-		"echo done" [#stepD]
+		"echo done" [lang=base,#stepD]
 	}
 }

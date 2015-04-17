@@ -22,7 +22,8 @@ function main(){
 	var ret;
 	if(action != 'read'){
 		ret = halolib.do(action,options,src);
+		return ret.code ? ret.code : 0 ;
 	}
-	return ret.code ? ret.code : 0 ;
+	return 0;
 }
 
