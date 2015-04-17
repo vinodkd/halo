@@ -9,7 +9,7 @@ for f in test/*; do
 	ret=$?
 	# echo $ret
 	if [[ $ret != 0 ]]; then
-		echo $f : test falied. Error code = $ret.
+		echo $f : test failed. Error code = $ret.
 	else
 		echo $f : test succeeded.
 	fi
