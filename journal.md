@@ -82,7 +82,7 @@ Resources:
 	- <s>array</s>
 	- <s>hashtables</s>
 	- <s>objects</s>
-- fix ssi.js to work only when base attributes are provided with the current strings.
+- <s>fix ssi.js to work only when base attributes are provided with the current strings.</s>
 - change syntax to include \`-quoted strings; change parser logic to convert these into normal base attrs.
 - create an ssi2.js that uses this new format
 - create hin and hout contexts and switch all logging to that
