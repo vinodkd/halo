@@ -98,7 +98,7 @@ Next up: actually creating the test primitives files.
 
 **Wed Apr 15 09:15:44 2015** : new ideas for syntax:
 
-- change "#" to "&" to "#" can be used for hashtags
+- <s>change "#" to "&" to "#" can be used for hashtags</s>
 - node "name" should be optional and equal to alias. this way anonymous nodes can be created with "names" based on value hash alone. these two syntaxes will be equivalent:
 
 	name { ... }
@@ -132,5 +132,10 @@ Now changes for ssi have broken the other tests. need to fix that.
 - added log to ssi and used it in one place.
 - added check to ssi that it will execute a step with base only if the attr lang=os/base is present
 - changed ssi.halo to work with new expectations in code
+
+**Fri Apr 17 05:32:38 2015** : debugging failure of parsing when node name is made null. changing the entry and edge rules to see if moving comments inside the edge rule will help prevent left recursion.
+
+**Fri Apr 17 06:08:56 2015** : giving up on this change for now. the # to & change seems simpler. going to try that.
+
 
 

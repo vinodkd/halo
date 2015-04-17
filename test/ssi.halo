@@ -9,8 +9,8 @@ It does this in the simplest possible way:
  */
 m1 [lang = ssi] {
 	sequence{
-		// the #stepA is a local anchor
-		"ls -al" [lang=os,#stepA]
+		// the &stepA is a local anchor
+		"ls -al" [lang=os,&stepA]
 		// this shows two steps in the same line
 		"ps -ef" [lang=os] "df -h" [lang=os]
 		if{
@@ -20,6 +20,6 @@ m1 [lang = ssi] {
 			--> stepD
 			--> stepA[test=blah]
 		}
-		"echo done" [lang=base,#stepD]
+		"echo done" [lang=base,&stepD]
 	}
 }

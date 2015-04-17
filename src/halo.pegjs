@@ -37,16 +37,16 @@ and for two functional reasons:
 2. attributes in the body are going to be hoisted to the graph level anyway
 */
 
-entry = _ c:cmt* e:(edge/graph) _ 			{ e.comments = c; return e; }
+entry = _ e:(edge/graph) _ 					{ return e; }
 
 attr = c:cmt* a:(nvpair/lref/tag) _ ","? _ 	{ a.comments = c; return a; }
 nvpair = n:name _ "=" _ v:value _			{ return {type:'nv',name:n,value:v}; }
 value = text
-lref = "#" r:nqstring 						{ return {type:'lref', ref:r}; }
+lref = "&" r:nqstring 						{ return {type:'lref', ref:r}; }
 tag = t:text 								{ return {type:'tag', tag:t}; }
 
-edge = roe:restOfEdge+						{ return {type:'edge', targets: roe}; }
-	 / s:text roe:restOfEdge+				{ return {type:'edge',src:s, targets: roe}; }
+edge = c:cmt* roe:restOfEdge+				{ return {type:'edge', comments:c,        targets: roe}; }
+	 / c:cmt* s:text roe:restOfEdge+		{ return {type:'edge', comments:c, src:s, targets: roe}; }
 restOfEdge = e:(fwdRel/retRel) a:attrs* _ 	{ return { opr:e.opr, rel:e.rel, dest:e.dest, attrs: a}; }
 fwdRel = opr:fwdPrefix r:desc "->" d:text 	{ return { opr:opr,rel:r,dest:d }; }
 retRel = "<-" r:desc "-" 					{ return { opr:'ret',rel:r}; }
