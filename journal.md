@@ -148,3 +148,5 @@ Anyhow, this works for now and can be checked in.
 
 **Sun Apr 19 14:36:31 2015** : Copying todos from plnext now so that there's a comprehensive list to work from. Also sorting out tasks between prototype version and the real version 1.
 
+**Sun Apr 19 18:10:59 2015** : added correct exception handling using the error object.
+
