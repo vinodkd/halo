@@ -62,9 +62,9 @@ Resources:
 **Sat Apr 11 20:06:40 2015** : Next steps:
 
 - <s>correct readme to reflect currently doable things.</s>
-- fix ssi.js to work only when base attributes are provided with the current strings.
-- change syntax to include \`-quoted strings; change parser logic to convert these into normal base attrs.
-- create an ssi2.js that uses this new format
+- <s>fix ssi.js to work only when base attributes are provided with the current strings.</s>
+- <s>change syntax to include \`-quoted strings; change parser logic to convert these into normal base attrs.</s>
+- <s>create an ssi2.js that uses this new format</s>
 - create hin and hout contexts and switch all logging to that
 - add the reference syntax into the parser
 
@@ -82,6 +82,10 @@ Resources:
 	- <s>array</s>
 	- <s>hashtables</s>
 	- <s>objects</s>
+	- analyze
+	- viz
+	- run fizzbuzz
+	- run todomvc
 - <s>fix ssi.js to work only when base attributes are provided with the current strings.</s>
 - <s>change syntax to include \`-quoted strings; change parser logic to convert these into normal base attrs.</s>
 - <s>create an ssi2.js that uses this new format</s>
