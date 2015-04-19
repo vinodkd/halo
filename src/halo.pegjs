@@ -19,14 +19,30 @@ note to editors: If there are syntax errors, try adding the whitespace rule befo
 }
 
 start = _ g:graph _  						{ return g; }
-graph = h:node _ b:body 					{ var g=h; g.type = 'graph'; g.body = b; return g; }
-	  / h:node 								{ return h; }
-node = c:cmt* n:name t:type? a:attrs?		{ return { type:'node',comments:c,name:n,template:(t?t:null),attrs:a}; }
+graph = h:node _ b:body 					{ var g=h; g.type = 'graph'; g.body = b; console.log("graph:"+ JSON.stringify(g));return g; }
+	  / h:node 								{ console.log("graphnode:"+ JSON.stringify(h));return h; }
+node = c:cmt* n:name t:type? a:attrs?		{
+												//console.log(n);
+												if(a == undefined || a == null)
+													a = {};
+												if(a.attrs == undefined || a.attrs == null)
+													a.attrs = [];
+												if(n.type=="e"){
+													a.attrs.push({type:'nv',name:'lang',value:'base'});
+												}
+												if(a.nvpairs == undefined || a.nvpairs == null)
+													a.nvpairs = {};
+												a.nvpairs = getNVPairs(a.attrs);
+												
+												console.log("node:"+JSON.stringify(n)+"\n attrs:"+JSON.stringify(a));
+												return { type:'node',comments:c,name:n.name,template:(t?t:null),attrs:a}; 
+											}
 body = "{" 
 		  entries: entry* _
-	   "}" 									{ return {type:'body', content: entries}; }
+	   "}" 									{ console.log("body");return {type:'body', content: entries}; }
 
-name = text
+name = e:eqstring							{ console.log("e:"+e);return {name:e,type:"e"};}
+	 / t:text 								{ console.log("t:"+t);return {name:t,type:"t"};}
 type = ":" t:text 							{ return t;}
 attrs = c:cmt* "[" attrs:attr+ "]"			{ return {type:'attrs',comments: c,attrs: attrs, nvpairs: getNVPairs(attrs)}; }
 
@@ -37,10 +53,10 @@ and for two functional reasons:
 2. attributes in the body are going to be hoisted to the graph level anyway
 */
 
-entry = _ e:(edge/graph) _ 					{ return e; }
+entry = _ e:(graph / edge) _ 					{ return e; }
 
 attr = c:cmt* a:(nvpair/lref/tag) _ ","? _ 	{ a.comments = c; return a; }
-nvpair = n:name _ "=" _ v:value _			{ return {type:'nv',name:n,value:v}; }
+nvpair = n:name _ "=" _ v:value _			{ return {type:'nv',name:n.name,value:v}; }
 value = text
 lref = "&" r:nqstring 						{ return {type:'lref', ref:r}; }
 tag = t:text 								{ return {type:'tag', tag:t}; }
@@ -59,9 +75,12 @@ generic = "-" 								{ return 'rel'; }
 desc = (text / "") 							{ return text(); }
 
 text = _ s:(qstring / nqstring) _			{ return s; }
+// escape quoted string
+eqstring = _ '`' chars: neqchar* '`' _		{ console.log("eq:"+text());return chars.join(''); }
 qstring = '"' chars: nqchar* '"'			{ return chars.join(''); }
 nqstring = s:nwchar+ 						{ return s.join(''); }
 /* Still not clear what the . at the end does, but it hangs without it :) */
+neqchar = !('`') . 							{ return text(); }
 nqchar = !('"') . 							{ return text(); }
 nwchar = ![ \t\n\r\{\}\[\]\:=#\>\/\|\*\",\-] .
 											{ return text(); }

@@ -83,8 +83,8 @@ Resources:
 	- <s>hashtables</s>
 	- <s>objects</s>
 - <s>fix ssi.js to work only when base attributes are provided with the current strings.</s>
-- change syntax to include \`-quoted strings; change parser logic to convert these into normal base attrs.
-- create an ssi2.js that uses this new format
+- <s>change syntax to include \`-quoted strings; change parser logic to convert these into normal base attrs.</s>
+- <s>create an ssi2.js that uses this new format</s>
 - create hin and hout contexts and switch all logging to that
 - add the reference syntax into the parser
 
@@ -136,6 +136,9 @@ Now changes for ssi have broken the other tests. need to fix that.
 **Fri Apr 17 05:32:38 2015** : debugging failure of parsing when node name is made null. changing the entry and edge rules to see if moving comments inside the edge rule will help prevent left recursion.
 
 **Fri Apr 17 06:08:56 2015** : giving up on this change for now. the # to & change seems simpler. going to try that.
+**Sun Apr 19 08:07:16 2015** : & change done. Now working (since friday actually) on introducing the \` quote into the syntax. Running into issues with ssi2.halo on this.
 
+**Sun Apr 19 13:31:37 2015** : Finally got the \` version to work. Spent a lot of time debugging the parser since it was failing only on the backquoted strings. After hours of debugging this turned out to be the lack of white space after the new `eqstring` sub rule of the `name` rule. All the more reason for me to normalize the names part of the parser.
 
+Anyhow, this works for now and can be checked in.
 
