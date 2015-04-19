@@ -146,3 +146,5 @@ Now changes for ssi have broken the other tests. need to fix that.
 
 Anyhow, this works for now and can be checked in.
 
+**Sun Apr 19 14:36:31 2015** : Copying todos from plnext now so that there's a comprehensive list to work from. Also sorting out tasks between prototype version and the real version 1.
+
