@@ -9,10 +9,10 @@ Format
 The todo list
 -------------
 
-- [] Prototype version !4/30/2015!
+- [] Prototype version !5/9/2015!
 	- [] start with the end user documentation and slowly bring in working pieces from the plnext source - making them uniform as I go along
-		- [] overview
-		- [] layer 1: basic data and actions
+		- [] overview !4/19/2015-4/20/2015!
+		- [] basic data and actions !4/21/2015-4/22/2015!
 			- [] nodes
 				- [] atomic nodes and primitives
 					- [] atomic "names"
@@ -32,9 +32,7 @@ The todo list
 				- [] implement new syntax envisioned
 			- [] actions: read
 				[X] implement read
-		- [] layer 2: references, contexts and the run action
-			- [] references
-				- [] add the reference syntax into the parser
+		- [] contexts and the run action !4/23/2015-4/24/2015!
 			- [] contexts 
 			- [] data in memory.
 				- [] nodes list
@@ -59,15 +57,29 @@ The todo list
 					- [] run using fizzbuzz
 					- [] server as a version of run
 					- [] multi-language program: todomvc
-		- [] layer 3: prototypes and halo as a documentation language
+		- [] human actions !5/3/2015-5/4/2015!
+			- [] include the human:
+				- [] add ask and wait actions to base machine
+				- [] demo understanding of todomvc as a series of edit actions
+			- [] actions that need a human or mimic a human
+				- [] build
+				- [] deploy
+		- [] prototypes and halo as a documentation language !5/5/2015-5/6/2015!
 			- [] prototypes and inheritance
 			- [] app strings as heredocs
 			- [] incomplete features
 				- [] trivially done with ... nodes
 			- [] actions: viz
-		- [] layer 4: halo as an analysis language
+		- [] halo as an analysis language !5/7/2015-5/8/2015!
+			- [] references
+				- [] add the reference syntax into the parser
 			- [] analyze
-		- [] layer 5: incremental data and human actions
+		- [] meta data and code !5/9/2015-5/10/2015!
+			- [] add a logic language in comments and have it interpreted at a higher level
+				- [] use prolog/logic language from halo for this
+- [] Version 1.0
+	- [] complete end user documentation and build out next set of pieces
+		- [] incremental data and versions
 			- [] incremental data
 				- [] add incremental data to the parser
 				- [] show memory model with incremental data
@@ -75,19 +87,9 @@ The todo list
 					- [] show mapping from one version of todomvc to another using inheritance.
 			- [] versions
 				- [] expand the ref syntax to handle versions
-			- [] include the human:
-				- [] add ask and wait actions to base machine
-				- [] demo understanding of todomvc as a series of edit actions
-				- [] actions that need a human or mimic a human			
-					- [] build
-					- [] deploy
-		- [] layer 6: meta data and code
-			- [] add a logic language in comments and have it interpreted at a higher level
-				- [] use prolog/logic language from halo for this
-		- [] layer 7: halo as an integration language
+		- [] halo shell and ide using incremental data
 			- text ide
 			- gui ide
-			- integration with sourcegraph
-- [] Version 1.0
 	- [] rewrite ssi so that sequence would just add a start and stop node to and traverse the memory graph to execute it.
 	- [] ports as start and end points in nodes.
+- [] Version 2.0: full-blown multi-lingual "engine" - the jack vision.
