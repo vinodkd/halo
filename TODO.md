@@ -14,11 +14,11 @@ The todo list
 		- [] overview !4/19/2015-4/20/2015!
 		- [] basic data and actions !4/21/2015-4/22/2015!
 			- [] nodes
-				- [] atomic nodes and primitives
+				- [X] atomic nodes and primitives
 					- [X] atomic "names"
-					- [] atomic numbers
-					- [] strings
-					- [] how everything is a string in the language
+					- [X] atomic numbers
+					- [X] strings
+					- [X] how everything is a string in the language
 				- [] compound nodes
 					- [] anonymous nodes
 					- [] node alias

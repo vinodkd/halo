@@ -2,11 +2,11 @@ primitives {
     // integer
     123
     // signed int
-    "-123"
+    -123
     // real
-    "123.45"
+    123.45
     // e notation
-    "123.45e-10"
+    123.45e-10
     // strings: the two words are two nodes in halo
     hello world
     // string: this is one node

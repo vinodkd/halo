@@ -21,17 +21,18 @@ The simplest nodes are atomic symbols, like so:
         // integer
         123
         // signed int
-        "-123"
+        -123
         // real
-        "123.45"
+        123.45
         // e notation
-        "123.45e-10"
+        123.45e-10
         // strings: the two words are two nodes in halo
         hello world
         // string: this is one node
         "hello world"
     }
 
+Note that although numbers can be represented naturally, Halo has no number type. All nodes are essentially string values that are passed as-is to the underlying language.
 
 ### Compound data types
 

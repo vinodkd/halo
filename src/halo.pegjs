@@ -21,7 +21,7 @@ note to editors: If there are syntax errors, try adding the whitespace rule befo
 start = _ g:graph _  						{ return g; }
 graph = h:node _ b:body 					{ var g=h; g.type = 'graph'; g.body = b; console.log("graph:"+ JSON.stringify(g));return g; }
 	  / h:node 								{ console.log("graphnode:"+ JSON.stringify(h));return h; }
-node = c:cmt* n:name t:type? a:attrs?		{
+node = c:cmt* n:nvalue t:type? a:attrs?		{
 												//console.log(n);
 												if(a == undefined || a == null)
 													a = {};
@@ -33,7 +33,7 @@ node = c:cmt* n:name t:type? a:attrs?		{
 												if(a.nvpairs == undefined || a.nvpairs == null)
 													a.nvpairs = {};
 												a.nvpairs = getNVPairs(a.attrs);
-												
+
 												console.log("node:"+JSON.stringify(n)+"\n attrs:"+JSON.stringify(a));
 												return { type:'node',comments:c,name:n.name,template:(t?t:null),attrs:a}; 
 											}
@@ -41,7 +41,8 @@ body = "{"
 		  entries: entry* _
 	   "}" 									{ console.log("body");return {type:'body', content: entries}; }
 
-name = e:eqstring							{ console.log("e:"+e);return {name:e,type:"e"};}
+nvalue = e:eqstring							{ console.log("e:"+e);return {name:e,type:"e"};}
+	 / n:number 							{ console.log("n:"+n);return {name:n,type:"n"};}
 	 / t:text 								{ console.log("t:"+t);return {name:t,type:"t"};}
 type = ":" t:text 							{ return t;}
 attrs = c:cmt* "[" attrs:attr+ "]"			{ return {type:'attrs',comments: c,attrs: attrs, nvpairs: getNVPairs(attrs)}; }
@@ -56,7 +57,8 @@ and for two functional reasons:
 entry = _ e:(graph / edge) _ 					{ return e; }
 
 attr = c:cmt* a:(nvpair/lref/tag) _ ","? _ 	{ a.comments = c; return a; }
-nvpair = n:name _ "=" _ v:value _			{ return {type:'nv',name:n.name,value:v}; }
+nvpair = n:name _ "=" _ v:value _			{ return {type:'nv',name:n,value:v}; }
+name = text
 value = text
 lref = "&" r:nqstring 						{ return {type:'lref', ref:r}; }
 tag = t:text 								{ return {type:'tag', tag:t}; }
@@ -79,6 +81,7 @@ text = _ s:(qstring / nqstring) _			{ return s; }
 eqstring = _ '`' chars: neqchar* '`' _		{ console.log("eq:"+text());return chars.join(''); }
 qstring = '"' chars: nqchar* '"'			{ return chars.join(''); }
 nqstring = s:nwchar+ 						{ return s.join(''); }
+number = "-"? [0-9\.]+ [eE]? "-"? [0-9\.]* 	{ return text(); }
 /* Still not clear what the . at the end does, but it hangs without it :) */
 neqchar = !('`') . 							{ return text(); }
 nqchar = !('"') . 							{ return text(); }

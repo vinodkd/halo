@@ -164,3 +164,7 @@ Also, need to be mindful of writing verbose text: I've assigned myself only 2 da
 **Sun Apr 19 22:16:54 2015** : LP seems to work fine with the one test I did. Need to try one more file and then add an `lpgen` script to package.json; and merge the branch back to master.
 
 **Mon Apr 20 00:14:12 2015** : LP is working fine for the docs. Will merge into master after this checkin.
+
+**Mon Apr 20 00:26:40 2015** : Got numbers with -'s and .'s in the parser, but its failing for ssi.halo. Need to see where the overlap is.
+
+**Mon Apr 20 02:56:29 2015** : finally fixed it. problem was the name rule was used everywhere. crated a new nvalue rule and put the number rule there, leaving the use of name in nvpair intact, and the use of text from within name and other places intact. This cleared the error where in ssi.halo the edge desc was being parsed as a number with resultant errors.
