@@ -15,7 +15,7 @@ The todo list
 		- [] basic data and actions !4/21/2015-4/22/2015!
 			- [] nodes
 				- [] atomic nodes and primitives
-					- [] atomic "names"
+					- [X] atomic "names"
 					- [] atomic numbers
 					- [] strings
 					- [] how everything is a string in the language

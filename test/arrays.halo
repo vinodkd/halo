@@ -1,31 +1,27 @@
-// arrays.halo
-// demonstrates representing arrays in halo
 // this works because all nodes have a natural index assigned to them.
 // so you could refer to the 6 below as arrays.array1[5]
  
 arrays {
-	// simple 1D array
-	array1 {
-		1 2 3 4 5
-		//referred above
-		6
-		7 8
-		9 10
-	}
-
-	// another 1-D array shown with each element in its own line. no change in meaning.
-	array2{
-		abc
-		def
-		"ghi"
-		"ghi mno"
-	}
-
-	// a 2D array
-	2darray {
-		// yes rows have to have names
-		row1 { 1 2 3 4 5 }
-		row2 { 11 12 13 14 15 }
-		row1 { 111 112 113 114 115 }
-	}
+    // simple 1D array
+    array1 {
+        1 2 3 4 5
+        //referred above
+        6
+        7 8
+        9 10
+    }
+    // another 1-D array shown with each element in its own line. no change in meaning.
+    array2{
+        abc
+        def
+        "ghi"
+        "ghi mno"
+    }
+    // a 2D array
+    2darray {
+        // yes rows have to have names
+        row1 { 1 2 3 4 5 }
+        row2 { 11 12 13 14 15 }
+        row1 { 111 112 113 114 115 }
+    }
 }

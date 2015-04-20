@@ -161,3 +161,6 @@ Anyhow, this works for now and can be checked in.
 
 Also, need to be mindful of writing verbose text: I've assigned myself only 2 days per section for docs and code.
 
+**Sun Apr 19 22:16:54 2015** : LP seems to work fine with the one test I did. Need to try one more file and then add an `lpgen` script to package.json; and merge the branch back to master.
+
+**Mon Apr 20 00:14:12 2015** : LP is working fine for the docs. Will merge into master after this checkin.
