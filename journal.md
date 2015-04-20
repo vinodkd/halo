@@ -153,3 +153,11 @@ Anyhow, this works for now and can be checked in.
 **Sun Apr 19 19:10:21 2015** : Update and organized todo list as a series of documentation+coding tasks, plus moved some items to version 1 already. The list is interspersed with data and action improvements in increments that are complete in themselves and can be versioned off at that point.
 
 **Sun Apr 19 20:39:37 2015** : Reorged the todo list, moved two sections into version 1 and setup a plan for completion by may 3rd. Let's see how that goes :). Work and personal constraints abound between 4/28 and 5/1; not to mention the start of the summer semester in may.
+
+**Sun Apr 19 20:41:34 2015** : Thinking of using literate programming to keep docs and code in sync. Going to try out the npm module that allows this: https://github.com/jostylr/literate-programming. The plan is to use LP thus:
+
+- Try it out for the user guide: write the user guide using markdown and generate all the files in `test` using LP. 
+- If that works out fine, then try writing out the code itself using LP.
+
+Also, need to be mindful of writing verbose text: I've assigned myself only 2 days per section for docs and code.
+
