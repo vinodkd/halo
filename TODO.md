@@ -10,42 +10,84 @@ The todo list
 -------------
 
 - [] Prototype version !4/30/2015!
-	- [] The version should contain:
-		- [] graph language concept:
-			- [] notional components and layers in a todo app
-			- [] todomvc viz from jack source
-			- [] same todomvc to demo mutlilanguage app rep
-		- [] no lang/mutli-lang: covered by 3rd line above
-		- [] .. thereby actions: demo using todomvc:
-			- [] run
-			- [] build
-			- [] deploy
-			- [] analyze
-		- [X] turing complete: covered by first line above
-		- [] include the human:
-			- [] add ask and wait actions to base machine
-			- [] demo understanding of todomvc as a series of edit actions
-			=> need basic editor
-		- [] ... meta concept:
-			- [] add a logic language in comments and have it interpreted at a higher level
-				- [] use prolog/logic language from ometa for this
-		- [] incremental code
-			- [] show mapping from one version of todomvc to another using inheritance.
-		- [] incomplete features
-			- [] trivially done with ... nodes
 	- [] start with the end user documentation and slowly bring in working pieces from the plnext source - making them uniform as I go along
-	- [] parser should not just give out a parse tree - it should actually convert the text into a graph with:
-		- [] nodes list
-		- [] edges list
-		- [] nodes with in and out edge properties that can be used to traverse the graph.
-		- [] lookup table that maps aliases to nodes
-		- [] and more generically, creates hash ids for each node
-		- [] sequence would then just add a start and stop node to and traverse the graph to execute it.
-	- [] represent nodes with some short cuts: 
-		- [X] backquoted strings are base strings
-		- [] double quoted strings are evaled, ie understood by the language. 
-		- [] Comments are just strings understood by humans or the sentient meta program
-	- [] create hin and hout contexts and switch all logging to that
-	- [] add the reference syntax into the parser
+		- [] overview
+		- [] layer 1: basic data and actions
+			- [] nodes
+				- [] atomic nodes and primitives
+					- [] atomic "names"
+					- [] atomic numbers
+					- [] strings
+					- [] how everything is a string in the language
+				- [] compound nodes
+					- [] anonymous nodes
+					- [] node alias
+				- [] node attributes
+					- [] nv pairs
+					- [] aliases
+					- [] tags
+			- [] Comments
+			- [] implement all of the above.
+				- [X] implement existing functionality
+				- [] implement new syntax envisioned
+			- [] actions: read
+				[X] implement read
+		- [] layer 2: references, contexts and the run action
+			- [] references
+				- [] add the reference syntax into the parser
+			- [] contexts 
+			- [] data in memory.
+				- [] nodes list
+				- [] edges list
+				- [] nodes with in and out edge properties that can be used to traverse the graph.
+				- [X] lookup table that maps aliases to nodes
+				- [] and more generically, creates hash ids for each node
+				- [] create hin and hout contexts and switch all logging to that
+			- [] actions: run
+				- [] all actions are available in "data format" as well, so that they can be acted on from a written program vs from the command line
+				- [X] representing programs as data
+					- [X] basic ssi language
+					- [] types of strings
+						- [] app strings
+						- [X] lang strings
+						- [X] os/base strings
+					- [] represent nodes with some short cuts: 
+						- [X] backquoted strings are base strings
+						- [X] double quoted strings are evaled, ie understood by the language. 
+				- [] representing programs as processes by converting them to memory data
+				- [] actions for programs
+					- [] run using fizzbuzz
+					- [] server as a version of run
+					- [] multi-language program: todomvc
+		- [] layer 3: prototypes and halo as a documentation language
+			- [] prototypes and inheritance
+			- [] app strings as heredocs
+			- [] incomplete features
+				- [] trivially done with ... nodes
+			- [] actions: viz
+		- [] layer 4: halo as an analysis language
+			- [] analyze
+		- [] layer 5: incremental data and human actions
+			- [] incremental data
+				- [] add incremental data to the parser
+				- [] show memory model with incremental data
+				- [] incremental code
+					- [] show mapping from one version of todomvc to another using inheritance.
+			- [] versions
+				- [] expand the ref syntax to handle versions
+			- [] include the human:
+				- [] add ask and wait actions to base machine
+				- [] demo understanding of todomvc as a series of edit actions
+				- [] actions that need a human or mimic a human			
+					- [] build
+					- [] deploy
+		- [] layer 6: meta data and code
+			- [] add a logic language in comments and have it interpreted at a higher level
+				- [] use prolog/logic language from halo for this
+		- [] layer 7: halo as an integration language
+			- text ide
+			- gui ide
+			- integration with sourcegraph
 - [] Version 1.0
-
+	- [] rewrite ssi so that sequence would just add a start and stop node to and traverse the memory graph to execute it.
+	- [] ports as start and end points in nodes.

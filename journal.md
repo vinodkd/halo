@@ -150,3 +150,4 @@ Anyhow, this works for now and can be checked in.
 
 **Sun Apr 19 18:10:59 2015** : added correct exception handling using the error object.
 
+**Sun Apr 19 19:10:21 2015** : Update and organized todo list as a series of documentation+coding tasks, plus moved some items to version 1 already. The list is interspersed with data and action improvements in increments that are complete in themselves and can be versioned off at that point.
