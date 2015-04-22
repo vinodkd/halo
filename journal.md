@@ -168,3 +168,7 @@ Also, need to be mindful of writing verbose text: I've assigned myself only 2 da
 **Mon Apr 20 00:26:40 2015** : Got numbers with -'s and .'s in the parser, but its failing for ssi.halo. Need to see where the overlap is.
 
 **Mon Apr 20 02:56:29 2015** : finally fixed it. problem was the name rule was used everywhere. crated a new nvalue rule and put the number rule there, leaving the use of name in nvpair intact, and the use of text from within name and other places intact. This cleared the error where in ssi.halo the edge desc was being parsed as a number with resultant errors.
+**Mon Apr 20 02:59:21 2015** : onto anonymous graphs.
+
+**Mon Apr 20 03:39:34 2015** : got it working, but code needs cleanup. Not checking in yet, thus. also docs need to be written.
+

@@ -20,13 +20,14 @@ The todo list
 					- [X] strings
 					- [X] how everything is a string in the language
 				- [] compound nodes
-					- [] anonymous nodes
-					- [] node alias
-				- [] node attributes
-					- [] nv pairs
-					- [] aliases
-					- [] tags
-			- [] Comments
+					- [X] anonymous nodes
+					- [X] node alias
+					- [] parser cleanup
+				- [X] node attributes
+					- [X] nv pairs
+					- [X] tags
+			- [X] Comments
+			- [X] ignore/nop tag
 			- [] implement all of the above.
 				- [X] implement existing functionality
 				- [] implement new syntax envisioned

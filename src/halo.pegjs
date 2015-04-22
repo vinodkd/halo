@@ -10,8 +10,10 @@ note to editors: If there are syntax errors, try adding the whitespace rule befo
 			return nvpairs;
 		for(var i=0;i<attrs.length;i++){
 			var attr = attrs[i];
-			if(attr.type == "nv"){
-				nvpairs[attr.name] = attr.value;
+			switch(attr.type){
+				case "nv"	: nvpairs[attr.name] = attr.value; break;
+				case "tag"	: nvpairs[attr.tag] = true; break;
+				case "lref"	: nvpairs["alias"] = attr.ref; break;
 			}
 		}
 		return nvpairs;
@@ -19,8 +21,34 @@ note to editors: If there are syntax errors, try adding the whitespace rule befo
 }
 
 start = _ g:graph _  						{ return g; }
-graph = h:node _ b:body 					{ var g=h; g.type = 'graph'; g.body = b; console.log("graph:"+ JSON.stringify(g));return g; }
-	  / h:node 								{ console.log("graphnode:"+ JSON.stringify(h));return h; }
+graph = h:anode? _ b:body 					{
+												var g = h ? h : {};
+												g.type = 'graph'; g.body = b;
+												// console.log("graph:"+ JSON.stringify(g));
+												return g;
+											}
+	  / h:node 								{
+												// console.log("graphnode:"+ JSON.stringify(h));
+
+												return (h.attrs.nvpairs['ignore'] || h.attrs.nvpairs['nop']) ? null : h;
+											}
+
+anode = c:cmt* al:text t:type? a:attrs?		{
+												//console.log(n);
+												if(a == undefined || a == null)
+													a = {};
+												if(a.attrs == undefined || a.attrs == null)
+													a.attrs = [];
+												if(al != null){
+													a.attrs.push({type:'lref',ref: al});
+												}
+												if(a.nvpairs == undefined || a.nvpairs == null)
+													a.nvpairs = {};
+												a.nvpairs = getNVPairs(a.attrs);
+
+												// console.log("node:"+JSON.stringify(al)+"\n attrs:"+JSON.stringify(a));
+												return { type:'node',comments:c,name:null,template:(t?t:null),attrs:a};
+											}
 node = c:cmt* n:nvalue t:type? a:attrs?		{
 												//console.log(n);
 												if(a == undefined || a == null)
@@ -61,7 +89,7 @@ nvpair = n:name _ "=" _ v:value _			{ return {type:'nv',name:n,value:v}; }
 name = text
 value = text
 lref = "&" r:nqstring 						{ return {type:'lref', ref:r}; }
-tag = t:text 								{ return {type:'tag', tag:t}; }
+tag = "#" t:text 							{ return {type:'tag', tag:t}; }
 
 edge = c:cmt* roe:restOfEdge+				{ return {type:'edge', comments:c,        targets: roe}; }
 	 / c:cmt* s:text roe:restOfEdge+		{ return {type:'edge', comments:c, src:s, targets: roe}; }
