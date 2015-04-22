@@ -1,6 +1,6 @@
-// this works because all nodes have a natural index assigned to them.
+// arrays.halo
+// all nodes have a natural index assigned to them.
 // so you could refer to the 6 below as arrays.array1[5]
- 
 arrays {
     // simple 1D array
     array1 {
@@ -19,9 +19,8 @@ arrays {
     }
     // a 2D array
     2darray {
-        // yes rows have to have names
-        row1 { 1 2 3 4 5 }
-        row2 { 11 12 13 14 15 }
-        row1 { 111 112 113 114 115 }
+        { 1 2 3 4 5 }
+        { 11 12 13 14 15 }
+        { 111 112 113 114 115 }
     }
 }

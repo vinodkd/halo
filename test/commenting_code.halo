@@ -1,0 +1,6 @@
+{
+    nodeA
+    nodeB [#ignore]
+    nodeC
+    nodeD [#nop]
+}

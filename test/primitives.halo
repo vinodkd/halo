@@ -1,4 +1,6 @@
 primitives {
+    // atoms
+    car plane boat ship
     // integer
     123
     // signed int
