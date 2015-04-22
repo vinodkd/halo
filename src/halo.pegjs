@@ -29,25 +29,24 @@ graph = h:anode? _ b:body 					{
 											}
 	  / h:node 								{
 												// console.log("graphnode:"+ JSON.stringify(h));
-
 												return (h.attrs.nvpairs['ignore'] || h.attrs.nvpairs['nop']) ? null : h;
 											}
 
-anode = c:cmt* al:text t:type? a:attrs?		{
+anode = c:cmt* alias:text t:type? a:attrs?	{
 												//console.log(n);
 												if(a == undefined || a == null)
 													a = {};
 												if(a.attrs == undefined || a.attrs == null)
 													a.attrs = [];
-												if(al != null){
-													a.attrs.push({type:'lref',ref: al});
+												if(alias != null){
+													a.attrs.push({type:'lref',ref: alias});
 												}
 												if(a.nvpairs == undefined || a.nvpairs == null)
 													a.nvpairs = {};
 												a.nvpairs = getNVPairs(a.attrs);
 
-												// console.log("node:"+JSON.stringify(al)+"\n attrs:"+JSON.stringify(a));
-												return { type:'node',comments:c,name:null,template:(t?t:null),attrs:a};
+												// console.log("node:"+JSON.stringify(alias)+"\n attrs:"+JSON.stringify(a));
+												return { type:'node',comments:c,template:(t?t:null),attrs:a};
 											}
 node = c:cmt* n:nvalue t:type? a:attrs?		{
 												//console.log(n);

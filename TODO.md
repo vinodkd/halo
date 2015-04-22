@@ -23,14 +23,17 @@ The todo list
 					- [X] anonymous nodes
 					- [X] node alias
 					- [] parser cleanup
+						- [X] rename al to alias
+						- [] remove "name" from node and graph output trees, instead combine body and name into value.
+							- [] fix issues in halo and ssi that come out of this.
 				- [X] node attributes
 					- [X] nv pairs
 					- [X] tags
 			- [X] Comments
 			- [X] ignore/nop tag
-			- [] implement all of the above.
+			- [X] implement all of the above.
 				- [X] implement existing functionality
-				- [] implement new syntax envisioned
+				- [X] implement new syntax envisioned
 			- [] actions: read
 				[X] implement read
 		- [] contexts and the run action !4/23/2015-4/24/2015!

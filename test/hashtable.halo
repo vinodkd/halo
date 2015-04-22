@@ -4,7 +4,7 @@ hashtables{
     name1 { value1 }
     name2 { value2 }
     name3 { value3 }
-    
+
     // another way is to have attributes on a single node
     hashtable [
         name1 = value1
