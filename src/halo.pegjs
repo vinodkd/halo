@@ -23,7 +23,7 @@ note to editors: If there are syntax errors, try adding the whitespace rule befo
 start = _ g:graph _  						{ return g; }
 graph = h:anode? _ b:body 					{
 												var g = h ? h : {};
-												g.type = 'graph'; g.body = b;
+												g.type = 'graph'; g.value = b;
 												// console.log("graph:"+ JSON.stringify(g));
 												return g;
 											}
@@ -48,29 +48,33 @@ anode = c:cmt* alias:text t:type? a:attrs?	{
 												// console.log("node:"+JSON.stringify(alias)+"\n attrs:"+JSON.stringify(a));
 												return { type:'node',comments:c,template:(t?t:null),attrs:a};
 											}
-node = c:cmt* n:nvalue t:type? a:attrs?		{
+node = c:cmt* alias:text? v:nvalue t:type? a:attrs?
+											{
 												//console.log(n);
 												if(a == undefined || a == null)
 													a = {};
 												if(a.attrs == undefined || a.attrs == null)
 													a.attrs = [];
-												if(n.type=="e"){
+												if(alias != null){
+													a.attrs.push({type:'lref',ref: alias});
+												}
+												if(v.type=="e"){
 													a.attrs.push({type:'nv',name:'lang',value:'base'});
 												}
 												if(a.nvpairs == undefined || a.nvpairs == null)
 													a.nvpairs = {};
 												a.nvpairs = getNVPairs(a.attrs);
 
-												console.log("node:"+JSON.stringify(n)+"\n attrs:"+JSON.stringify(a));
-												return { type:'node',comments:c,name:n.name,template:(t?t:null),attrs:a}; 
+												console.log("node:value:"+JSON.stringify(v)+"\n attrs:"+JSON.stringify(a));
+												return { type:'node',comments:c,value:v.value,template:(t?t:null),attrs:a}; 
 											}
 body = "{" 
 		  entries: entry* _
 	   "}" 									{ console.log("body");return {type:'body', content: entries}; }
 
-nvalue = e:eqstring							{ console.log("e:"+e);return {name:e,type:"e"};}
-	 / n:number 							{ console.log("n:"+n);return {name:n,type:"n"};}
-	 / t:text 								{ console.log("t:"+t);return {name:t,type:"t"};}
+nvalue = e:eqstring							{ console.log("e:"+e);return {value:e,type:"e"};}
+	 / n:number 							{ console.log("n:"+n);return {value:n,type:"n"};}
+	 / t:text 								{ console.log("t:"+t);return {value:t,type:"t"};}
 type = ":" t:text 							{ return t;}
 attrs = c:cmt* "[" attrs:attr+ "]"			{ return {type:'attrs',comments: c,attrs: attrs, nvpairs: getNVPairs(attrs)}; }
 
