@@ -1,5 +1,24 @@
 // halo2.pegjs
 
+{
+	function createMap(attrs){
+		var map = {};
+		if(!attrs.length)
+			return map;
+		for(var i=0;i<attrs.length;i++){
+			var attr = attrs[i];
+			switch(attr.type){
+				case "nv"	: map[attr.name] = attr.value; break;
+				case "tag"	: map[attr.tag] = true; break;
+				case "lref"	: map["alias"] = attr.ref; break;
+			}
+		}
+		return map;
+	}
+}
+
+
+
 start 	= _ v:value _								{ return v; }
 
 _ "ws"	= [ \t\r\n]*
@@ -16,12 +35,16 @@ value 	= _ c:cmt* _ a:alias? _ v:(node / graph) _	{ /*console.log(v);*/
 cmt   	= _ "/*" cc:cchar* "*/" _ 					{ return cc.join(''); }
 		/ _ "//" cl:clchar* [\r\n]+ _				{ return cl.join(''); }
 alias =  _ ":" _ al:identifier _  					{ /*console.log('al:'+al);*/ return al; }
-graph = _ attrs:attrs* _ "{" _ e:entry* _ "}" _		{ return {type:'graph', value:e, attrs:attrs}; }
+graph = _ attrs:attrs* _ "{" _ e:entry* _ "}" _		{ return {type:'graph', value:e, attrs:attrs ? attrs: {} }; }
 node = v:nvalue attrs:attrs*						{
 														attrs = attrs ? attrs : {};
+														attrs.attrs = attrs.attrs? attrs.attrs : [];
+														attrs.comments = attrs.comments ? attrs.comments : [];
+
 														if(v.type == 'e')
-															attrs.push({type:'nv',name:'lang',value:'base'});
+															attrs.attrs.push({type:'nv',name:'lang',value:'base'});
 														v.attrs=attrs;
+														v.attrs.map = createMap(attrs);
 														v.type = 'node';
 														return v;
 													}
@@ -36,7 +59,7 @@ entry = _ c:(edge / value) _							{ return c; }
 eqstring = _ '`' chars: neqchar* '`' _				{ return chars.join(''); }
 number = "-"? [0-9\.]+ [eE]? "-"? [0-9\.]* 			{ return text(); }
 text = _ t:(nqstring/qstring) _						{ return t; }
-attrs = c:cmt* _ "[" _ attrs:attr+ _ "]" _			{ return {type:'attrs',comments:c, attrs:attrs}; }
+attrs = c:cmt* _ "[" _ attrs:attr+ _ "]" _			{ return {type:'attrs',comments:c, attrs:attrs, map:createMap(attrs)}; }
 
 edge = c:cmt* roe:restOfEdge+						{ return {type:'edge', comments:c,        targets: roe}; }
 	 / c:cmt* s:text roe:restOfEdge+				{ return {type:'edge', comments:c, src:s, targets: roe}; }
