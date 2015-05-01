@@ -1,10 +1,10 @@
 //object.halo
-objects{
-    object {
+:objects{
+    :object {
         valueMember1
-        compoundMember2 {
+        :compoundMember2 {
             childValue1
-            compoundChild2 {
+            :compoundChild2 {
                 value1
                 value2
                 // this is actually another "value"
@@ -13,21 +13,21 @@ objects{
         }
     }
     // a list of students
-    students {
-        student1 {
+    :students {
+        :student1 {
             john
             smith
-            gpa { 3.45 }
+            :gpa { 3.45 }
         }
-        student2 {
+        :student2 {
             john
             doe
-            gpa { 2.45 }
+            :gpa { 2.45 }
         }
-        student3 {
+        :student3 {
             jane
             clark
-            gpa { 4.45 }
+            :gpa { 4.45 }
         }
     }
 }

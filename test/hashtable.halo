@@ -1,9 +1,9 @@
 //hashtable.halo
-hashtables{
+:hashtables{
     // simple name-value pair
-    name1 { value1 }
-    name2 { value2 }
-    name3 { value3 }
+    :name1 { value1 }
+    :name2 { value2 }
+    :name3 { value3 }
 
     // another way is to have attributes on a single node
     hashtable [
@@ -12,12 +12,12 @@ hashtables{
         name3 = value3
     ]
     // if you want values that are compound themselves, here's how:
-    hashtable2 {
-        name1 {
+    :hashtable2 {
+        :name1 {
             value11
             value12
         }
-        name2 {
+        :name2 {
             value21
             value22
         }

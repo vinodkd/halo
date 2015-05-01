@@ -7,19 +7,19 @@ It does this in the simplest possible way:
 - selection is the only built in "form" - the if node.
 - iteration is through edges from the if node to other nodes in the sequence.
  */
-m1 [lang = ssi] {
-	sequence{
+:m1 [lang = ssi] {
+	:sequence{
 		// the &stepA is a local anchor
-		`ls -al` [&stepA]
+		:stepA `ls -al`
 		// this shows two steps in the same line
 		`ps -ef` `df -h`
-		if{
+		:if{
 			// condition is evaluated in the base language
 			`expr 2 \> 1`
 			// edges to other nodes in the sequence
 			--> stepD
 			--> stepA[test=blah]
 		}
-		`echo done` [&stepD]
+		:stepD `echo done`
 	}
 }

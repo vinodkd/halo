@@ -27,7 +27,7 @@ The Halo programming language User Guide
 Halo represents all data as graphs. Graphs are represented in Halo thus:
 
     // halo syntax                       // graphviz syntax
-    alias {                              digraph name {
+    :alias {                              digraph name {
         ... graph contents ...                ... graph contents ...
     }                                    }
 
@@ -58,7 +58,7 @@ In Halo, nodes are essentially values and like Graphviz, they are represented wi
 ### Simple Nodes
 The simplest nodes are atomic symbols, like so:
 
-    primitives {
+    :primitives {
         // atoms
         car plane boat ship
         // integer
@@ -79,6 +79,7 @@ The simplest node is an atom - a symbol represented by an unquoted string of cha
 
 Numbers can be represented naturally as shown above but Halo has no number type. All nodes are essentially string values that are passed as-is to the underlying language. More on this later.
 
+[../test/attributes.halo](#Attributes "save:")
 ### Attributes
 
 Nodes can have attributes, which are represented very similar to attributes in Graphviz. For example:
@@ -87,13 +88,13 @@ Nodes can have attributes, which are represented very similar to attributes in G
         car [isA=vehicle,type=land]
         plane [isA=vehicle,type=air]
         ship [isA=vehicle type=water]
-    }
+        ....
 
 As you can see, multiple attributes are allowed and can be separated by whitespace or commas.
 
 Halo enhances the attribute concept, however, with tags. Tags are categories that you can attach to each node, like so:
 
-    {
+        ...
         ferrari [type=vehicle,#awesome,#wishIhadOne]
     }
 
@@ -103,8 +104,8 @@ Yes, the syntax is borrowed from hashtags. They are used in Halo to filter nodes
 
 Anything more complicated than a symbol, number or string must be represented as a Subgraph and they're depicted like so:
 
-    graph {
-        subgraph {
+    :graph {
+        :subgraph {
             ... subgraph content ...
         }
         // anonymous subgraph
@@ -123,9 +124,9 @@ Arrays work because all nodes in Halo have an index assigned to them based on do
     // arrays.halo
     // all nodes have a natural index assigned to them.
     // so you could refer to the 6 below as arrays.array1[5]
-    arrays {
+    :arrays {
         // simple 1D array
-        array1 {
+        :array1 {
             1 2 3 4 5
             //referred above
             6
@@ -133,30 +134,29 @@ Arrays work because all nodes in Halo have an index assigned to them based on do
             9 10
         }
         // another 1-D array shown with each element in its own line. no change in meaning.
-        array2{
+        :array2{
             abc
             def
             "ghi"
             "ghi mno"
         }
         // a 2D array
-        2darray {
+        :2darray {
             { 1 2 3 4 5 }
             { 11 12 13 14 15 }
             { 111 112 113 114 115 }
         }
     }
 
-
 [../test/hashtable.halo](#Hashtables "save:")
 #### Hashtables
 
     //hashtable.halo
-    hashtables{
+    :hashtables{
         // simple name-value pair
-        name1 { value1 }
-        name2 { value2 }
-        name3 { value3 }
+        :name1 { value1 }
+        :name2 { value2 }
+        :name3 { value3 }
 
         // another way is to have attributes on a single node
         hashtable [
@@ -165,29 +165,28 @@ Arrays work because all nodes in Halo have an index assigned to them based on do
             name3 = value3
         ]
         // if you want values that are compound themselves, here's how:
-        hashtable2 {
-            name1 {
+        :hashtable2 {
+            :name1 {
                 value11
                 value12
             }
-            name2 {
+            :name2 {
                 value21
                 value22
             }
         }
     }
 
-
 [../test/object.halo](#Objects "save:")
 #### Objects
 
     //object.halo
-    objects{
-        object {
+    :objects{
+        :object {
             valueMember1
-            compoundMember2 {
+            :compoundMember2 {
                 childValue1
-                compoundChild2 {
+                :compoundChild2 {
                     value1
                     value2
                     // this is actually another "value"
@@ -196,24 +195,25 @@ Arrays work because all nodes in Halo have an index assigned to them based on do
             }
         }
         // a list of students
-        students {
-            student1 {
+        :students {
+            :student1 {
                 john
                 smith
-                gpa { 3.45 }
+                :gpa { 3.45 }
             }
-            student2 {
+            :student2 {
                 john
                 doe
-                gpa { 2.45 }
+                :gpa { 2.45 }
             }
-            student3 {
+            :student3 {
                 jane
                 clark
-                gpa { 4.45 }
+                :gpa { 4.45 }
             }
         }
     }
+
 
 ### Some comments about comments
 
@@ -241,6 +241,7 @@ However, there's one deviation from other languages: *comments are tied to nodes
         node
         // the node above is awesome!
     }
+
 
 
 ... is invalid syntax and will fail in parsing.

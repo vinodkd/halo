@@ -174,3 +174,11 @@ Also, need to be mindful of writing verbose text: I've assigned myself only 2 da
 **Mon Apr 20 03:39:34 2015** : got it working, but code needs cleanup. Not checking in yet, thus. also docs need to be written.
 
 **Wed Apr 22 08:20:02 2015** : implemented a lot of what's due today. Pending: cleanup of the parser code and honoring the `#ignore` tag.
+
+**Wed Apr 22 18:23:58 2015** : Was trying to figure out the best way to introduce aliases for nodes. Currently it works out for subgraphs because there's an easy way to figure out the end of the alias - the body begins. With nodes, there's no such distinction. Should i bring back the & sigil (or something else)?
+
+**Mon Apr 27 08:05:41 2015** : Wasted the whole weekend, so really lagging behind. Plus: strangeloop's dates have been published, so no pressure :)
+
+**Mon Apr 27 17:40:08 2015** : was still getting halo2.pegjs to work with primitive.halo.
+
+**Wed Apr 29 17:48:03 2015** : Checkin before going any further since new parser works for the most part.

@@ -10,7 +10,7 @@
     "halo":"halo"
     },
   "scripts": {
-    "gen" : "if [ src/halo.pegjs -nt lib/parser.js ]; then echo generating...; pegjs src/halo.pegjs lib/parser.js ; echo done; fi",
+    "gen" : "if [ src/halo2.pegjs -nt lib/parser.js ]; then echo generating...; pegjs src/halo2.pegjs lib/parser.js ; echo done; fi",
     "litgen" : "if command -v literate-programming 2> /dev/null; then echo lit generating...; cd doc; literate-programming *.md ; echo done; fi",
     "pretest" : "npm run gen; npm run litgen",
     "test": "./runtests.sh"

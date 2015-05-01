@@ -1,0 +1,9 @@
+{
+    car [isA=vehicle,type=land]
+    plane [isA=vehicle,type=air]
+    ship [isA=vehicle type=water]
+    ....
+
+    ...
+    ferrari [type=vehicle,#awesome,#wishIhadOne]
+}

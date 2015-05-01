@@ -1,4 +1,4 @@
-primitives {
+:primitives {
     // atoms
     car plane boat ship
     // integer

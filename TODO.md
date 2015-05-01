@@ -24,7 +24,7 @@ The todo list
 					- [X] node alias
 					- [] parser cleanup
 						- [X] rename al to alias
-						- [] remove "name" from node and graph output trees, instead combine body and name into value.
+						- [X] remove "name" from node and graph output trees, instead combine body and name into value.
 							- [] fix issues in halo and ssi that come out of this.
 				- [X] node attributes
 					- [X] nv pairs
