@@ -18,6 +18,9 @@ cmt   	= _ "/*" cc:cchar* "*/" _ 					{ return cc.join(''); }
 alias =  _ ":" _ al:identifier _  					{ /*console.log('al:'+al);*/ return al; }
 graph = _ attrs:attrs* _ "{" _ e:entry* _ "}" _		{ return {type:'graph', value:e, attrs:attrs}; }
 node = v:nvalue attrs:attrs*						{
+														attrs = attrs ? attrs : {};
+														if(v.type == 'e')
+															attrs.push({type:'nv',name:'lang',value:'base'});
 														v.attrs=attrs;
 														v.type = 'node';
 														return v;
