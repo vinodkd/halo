@@ -3,11 +3,19 @@
 start 	= _ v:value _								{ return v; }
 
 _ "ws"	= [ \t\r\n]*
-value 	= _ c:cmt* _ a:alias? _ v:(node / graph) _	{ console.log(v);v.comments=c; v.alias=a; return v; }
+value 	= _ c:cmt* _ a:alias? _ v:(node / graph) _	{ /*console.log(v);*/
+														return {
+															alias	:a,
+															comments:c,
+															type	:v.type,
+															attrs	:v.attrs,
+															value	:v.value
+														};
+													}
 
 cmt   	= _ "/*" cc:cchar* "*/" _ 					{ return cc.join(''); }
 		/ _ "//" cl:clchar* [\r\n]+ _				{ return cl.join(''); }
-alias =  _ ":" _ al:identifier _  					{ console.log('al:'+al);return al; }
+alias =  _ ":" _ al:identifier _  					{ /*console.log('al:'+al);*/ return al; }
 graph = _ attrs:attrs* _ "{" _ e:entry* _ "}" _		{ return {type:'graph', value:e, attrs:attrs}; }
 node = v:nvalue attrs:attrs*						{
 														v.attrs=attrs;
@@ -32,7 +40,7 @@ edge = c:cmt* roe:restOfEdge+						{ return {type:'edge', comments:c,        tar
 neqchar = !('`') . 									{ return text(); }
 nqstring = s:nwchar+								{ return s.join('');}
 qstring = '"' s:nqchar+ '"'							{ return s.join('');}
-attr = c:cmt* _ a:(tag / nvpair) _ ","? _			{ console.log(a);a.comments = c; return a; }
+attr = c:cmt* _ a:(tag / nvpair) _ ","? _			{ /*console.log(a);*/a.comments = c; return a; }
 
 restOfEdge = e:(fwdRel/retRel) a:attrs* _ 			{ return { opr:e.opr, rel:e.rel, dest:e.dest, attrs: a}; }
 nwchar = ![ \t\n\r\{\}\[\]\:=#\>\/\|\*\",\-] . 		{ return text(); }
