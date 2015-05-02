@@ -81,6 +81,7 @@ Here're some specific examples that show halo's features:
 <!-- * Run `halo viz test/abs_todomvc.halo` to visualize the structure and behavior of of an app that inherits from `spa.halo`. -->
 * Run `halo run test/ssi.halo` to see a simple imperative machine at work. It's called ssi since it models the 3 basic imperative operations - [sequence, selection and iteration](http://en.wikipedia.org/wiki/Structured_programming#Control_structures)
 * Run `halo run test/ssi2.halo` to see a simpler syntax to run actions in the base or OS's language.
+* Run `halo run test/ssi_loop.halo` to see an endless loop in the base or OS's language.
 
 <!-- * Run `halo run test/fizzbuzz.halo` to see a single-language app in action. -->
 <!-- * Run `halo run test/todomvc/main.halo` to see a multi-language app in action. -->
