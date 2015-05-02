@@ -5,20 +5,57 @@ The Halo programming language User Guide
 
 **Halo** is an experimental programming language that attempts to model software development as a **great translation exercise from human thought to running code**. It models not just the code, but the process by which code is created and the human doing the creation him/herself. It recognizes that there are multiple layers of abstraction and optimization involved in creating *acceptable* software and attempts to model that too. Further, it recognizes that change is inevitable, that software models change and specifically that change usually crosses domain (function, program, component, process, network) boundaries - and attempts to model that too.
 
-# Disclaimer
+## The Big Ideas(TM)
 
-**Halo is very much an "assembled" project - almost everything in Halo has been tried before; so if you find some feature of Halo reminding you of some language of the past, its most probably true. There was just a wealth of ideas from the past that Halo couldnt help but borrow.**
+* Everything is a graph - data, code and documents related to code.
+* Programs are descriptions of processes as graph data, which are "run" by an executor by traversing the graph.
+* Executors can be machines or humans; software development is the grand exercise of minimizing the role of human executors.
+* Programs always have multiple levels of abstraction.
+    * For example, a Java program runs on a C runtime, which runs on a x86 virtual machine which runs on a docker instance, which runs on a physical macbook pro.
+* At every level of abstraction, a program has 4 layers - Human (or Meta), Application, Language and OS (or Base).
+    * For a Java program, Human = human using bash, App = java app, Lang = Java, OS (Base) = Java runtime
+    * For the Java runtime itself: Human (Meta) = human using bash, app = Java program, Lang = C, OS (Base) = actual OS of machine.
+    * For the OS: Human (Meta) = Java app, App = Java runtime, lang = System call API, OS (Base) = instruction set of machine.
+* At a particular level of abstraction, **Components** are the smallest pieces of *callable* code. The exact definitions of "component" and "callable" depends on the language being used.
+* Good software has the right set of components at the right level of abstraction. This, however, happens over time because of [Reality Driven Development](http://tt2n.blogspot.com/2011/02/reality-driven-development.html)
+* Changing software to reach this state requires moving components in three ways:
+    * Up the abstraction ladder to make it more generic (abstraction)
+    * Down the abstraction ladder to make it efficient (optimization)
+    * Within the same abstraction layer in response to change in domain logic (sequencing)
+    These are lossy processes since they're largely manual.
+* Modeling software change *in the language* is therefore a good thing(TM) since some of the losses can be recouped by storing metadata about how and why the change was made, reducing [Snapshot based code](http://tt2n.blogspot.com/2011/04/evolutionary-vs-snapshot-development.html)
+* Further, modeling the process by which software is created and changed *in the language*, becomes a good thing(TM) as a since it helps the automation of change.
+* Applications are typically collections of programs/services and regularly use multiple languages and executors. Modeling the multi-lingual and multi-process nature of applictions *in the language* is required to extend the concepts above to real-world applications.
 
-# The big ideas
 
-  * Everything is a graph
-  * Programs are "actions" by an executor
-  * Components are the smallest pieces of code
-  * Every software system is a combination of human and machine.
-  * Every program has 4 layers - Human, Application, Language and OS - at a chosen level of abstraction.
-  * Modeling software change *in the language* is a good thing(TM).
-  * Modeling the process by which software is created *in the language* is a good thing(TM).
+## ... and some smaller ideas too
+These ideas fix some small annoyance or purpose some small best practice:
 
+* No comments without code.
+* No misusing comments to hide code, use tags to mark code as ignorable instead.
+* Names for things are bad and prevent change. Content-based IDs are good. Aliases are ok.
+
+## Halo features
+In response to these ideas, Halo has or does this:
+
+* Everything is represented as a **graph**, in a Graphviz-like syntax. Everything = code, data, docs.
+* Everything has IDs which act as names, a la git's blob hashes. Aliases are allowed, however.
+* Executors are represented by **actions**. Executors run actions in Halo.
+* The layers at each level of abstraction are directly represented in Halo:
+    * Comments represent the Human (or Meta) level
+    * Nodes, graphs and edges represent the application
+    * Nodes with quoted strings (or appropriately attributed nodes) represent `eval`-ed language code.
+    * Nodes with back-quoted strings (or appropriately attributed nodes) represent `exec`-ed language code.
+* To keep the definition of "component" and "call" generic, Halo adds no additional syntax or library of its own. Instead it defines that:
+    * any node is a potential component call
+    * a graph is a component definition (or collection/hierarchy of components)
+* Changes to software are modeled as changes to the graph representing the software
+* The process by which software is created, deployed and maintained is itself modeled as a basic workflow.
+* Multilingual software is represented by allowing each node or graph to have its own language (and associated executor)
+
+## Disclaimer
+
+Halo is very much an "assembled" language - almost everything in Halo has been built and/or tried before; so if you find some feature of Halo reminding you of some language of the past, its most probably true. There was just a wealth of ideas from the past that Halo couldnt help but borrow!
 
 # Basic Data and Actions
 

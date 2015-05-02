@@ -182,3 +182,13 @@ Also, need to be mindful of writing verbose text: I've assigned myself only 2 da
 **Mon Apr 27 17:40:08 2015** : was still getting halo2.pegjs to work with primitive.halo.
 
 **Wed Apr 29 17:48:03 2015** : Checkin before going any further since new parser works for the most part.
+
+**Wed Apr 29 18:04:36 2015** : Was fixing the big ideas section.
+
+**Thu Apr 30 21:19:43 2015** : Fixing ssi to work with new parse tree.
+
+**Thu Apr 30 23:22:38 2015** : was trying to fix ssi.js.
+
+**Sat May  2 07:33:31 2015** : fixed ssi, ssi2. added ssi_loop to show endless looping works.
+
+**Sat May  2 09:44:50 2015** : finished fixing the ideas section - at least for now. Still not happy with the difference between the readme and the userguide top section, but leaving it as is for now.

@@ -13,7 +13,7 @@ The todo list
 	- [] start with the end user documentation and slowly bring in working pieces from the plnext source - making them uniform as I go along
 		- [] overview !4/19/2015-4/20/2015!
 		- [] basic data and actions !4/21/2015-4/22/2015!
-			- [] nodes
+			- [X] nodes
 				- [X] atomic nodes and primitives
 					- [X] atomic "names"
 					- [X] atomic numbers
@@ -25,7 +25,7 @@ The todo list
 					- [] parser cleanup
 						- [X] rename al to alias
 						- [X] remove "name" from node and graph output trees, instead combine body and name into value.
-							- [] fix issues in halo and ssi that come out of this.
+							- [X] fix issues in halo and ssi that come out of this.
 				- [X] node attributes
 					- [X] nv pairs
 					- [X] tags
