@@ -2,9 +2,15 @@
 
 {
 	function createMap(attrs){
+		// console.log("in createMap:" + JSON.stringify(attrs));
 		var map = {};
 		if(!attrs.length)
 			return map;
+		updateMap(map,attrs);
+		return map;
+	}
+
+	function updateMap(map,attrs){
 		for(var i=0;i<attrs.length;i++){
 			var attr = attrs[i];
 			switch(attr.type){
@@ -13,7 +19,6 @@
 				case "lref"	: map["alias"] = attr.ref; break;
 			}
 		}
-		return map;
 	}
 }
 
@@ -35,18 +40,17 @@ value 	= _ c:cmt* _ a:alias? _ v:(node / graph) _	{ /*console.log(v);*/
 cmt   	= _ "/*" cc:cchar* "*/" _ 					{ return cc.join(''); }
 		/ _ "//" cl:clchar* [\r\n]+ _				{ return cl.join(''); }
 alias =  _ ":" _ al:identifier _  					{ /*console.log('al:'+al);*/ return al; }
-graph = _ attrs:attrs* _ "{" _ e:entry* _ "}" _		{ return {type:'graph', value:e, attrs:attrs ? attrs: {} }; }
-node = v:nvalue attrs:attrs*						{
+graph = _ attrs:attrs? _ "{" _ e:entry* _ "}" _		{ return {type:'graph', value:e, attrs:attrs ? attrs: {} }; }
+node = v:nvalue attrs:attrs?						{
 														attrs = attrs ? attrs : {};
 														attrs.attrs = attrs.attrs? attrs.attrs : [];
 														attrs.comments = attrs.comments ? attrs.comments : [];
 
 														if(v.type == 'e')
 															attrs.attrs.push({type:'nv',name:'lang',value:'base'});
-														v.attrs=attrs;
-														v.attrs.map = createMap(attrs);
-														v.type = 'node';
-														return v;
+														attrs.map = {};
+														updateMap(attrs.map,attrs.attrs);
+														return {type:'node',value:v.value,attrs:attrs};
 													}
 nvalue = e:eqstring									{ return {value:e,type:"e"}; }
 	 / n:number 									{ return {value:n,type:"n"}; }
@@ -68,7 +72,7 @@ nqstring = s:nwchar+								{ return s.join('');}
 qstring = '"' s:nqchar+ '"'							{ return s.join('');}
 attr = c:cmt* _ a:(tag / nvpair) _ ","? _			{ /*console.log(a);*/a.comments = c; return a; }
 
-restOfEdge = e:(fwdRel/retRel) a:attrs* _ 			{ return { opr:e.opr, rel:e.rel, dest:e.dest, attrs: a}; }
+restOfEdge = e:(fwdRel/retRel) a:attrs? _ 			{ return { opr:e.opr, rel:e.rel, dest:e.dest, attrs: a}; }
 nwchar = ![ \t\n\r\{\}\[\]\:=#\>\/\|\*\",\-] . 		{ return text(); }
 nqchar = !('"') . 									{ return text(); }
 nvpair = _ n:name _ "=" _ v:val _ 					{ return {type:'nv',name:n,value:v}; }
