@@ -10,7 +10,7 @@ It does this in the simplest possible way:
 :m1 [lang = ssi] {
 	:sequence{
 		// the :stepA is a local anchor
-	:stepA "ls -al"
+	:stepA "ls -al" [lang=os]
 		// this shows two steps in the same line
 	:stepB	"ps -ef" [lang = os] "df -h" [lang=os]
 		:if{
