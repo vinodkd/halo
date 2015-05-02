@@ -1,0 +1,19 @@
+/* 
+This version reverses the edges in the if, resulting in an endless loop.
+ */
+:m1 [lang = ssi] {
+	:sequence{
+		// the &stepA is a local anchor
+		:stepA `ls -al`
+		// this shows two steps in the same line
+		`ps -ef` `df -h`
+		:if{
+			// condition is evaluated in the base language
+			`expr 2 \> 1`
+			// edges to other nodes in the sequence
+			--> stepA[test=blah]
+			--> stepD
+		}
+		:stepD `echo done`
+	}
+}
