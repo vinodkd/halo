@@ -10,6 +10,7 @@ The Halo programming language User Guide
 * Everything is a graph - data, code and documents related to code.
 * Programs are descriptions of processes as graph data, which are "run" by an executor by traversing the graph.
 * Executors can be machines or humans; software development is the grand exercise of minimizing the role of human executors.
+* Running programs and their data can also be represented as graphs; and changes in data and code that's running can be represented as versioned data.
 * Programs always have multiple levels of abstraction.
     * For example, a Java program runs on a C runtime, which runs on a x86 virtual machine which runs on a docker instance, which runs on a physical macbook pro.
 * At every level of abstraction, a program has 4 layers - Human (or Meta), Application, Language and OS (or Base).
@@ -52,6 +53,14 @@ In response to these ideas, Halo has or does this:
 * Changes to software are modeled as changes to the graph representing the software
 * The process by which software is created, deployed and maintained is itself modeled as a basic workflow.
 * Multilingual software is represented by allowing each node or graph to have its own language (and associated executor)
+
+## Halo use cases
+
+Halo can be used to:
+* Enable full-lifecycle representation of all coding artifacts - from design to maintenance and beyond.
+* Enable cross-language code analysis for dependency, quality, etc.
+* Enable building multi-language component-based software.
+* Enable large scale change of software
 
 ## Disclaimer
 

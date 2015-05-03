@@ -192,3 +192,5 @@ Also, need to be mindful of writing verbose text: I've assigned myself only 2 da
 **Sat May  2 07:33:31 2015** : fixed ssi, ssi2. added ssi_loop to show endless looping works.
 
 **Sat May  2 09:44:50 2015** : finished fixing the ideas section - at least for now. Still not happy with the difference between the readme and the userguide top section, but leaving it as is for now.
+
+**Sun May  3 01:59:14 2015** : finally merged the two sections.

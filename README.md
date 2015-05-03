@@ -1,17 +1,7 @@
 The HALO Programming Language
 ==============================
 
-**HALO** is an experimental programming language. Here are some of the things it attempts to do:
-
-* Model all software as having multiple nested layers, each of which can be one of 4 types - Human, Application, Language and OS (hence the name).
-* Model all software as being built of components - the definition of which is decided by the human involved.
-* Model data (and therefore code representation) as graphs.
-* Model programs as actions on graphs.
-* Model multi-language applications as unified graphs.
-* Model the human processes by which software is made - also as actions.
-* Model changes in data, programs and processes as versioned graphs
-* Model large-scale changes to large applications
-* Model multi-level abstraction and/or optimization of software.
+**Halo** is an experimental programming language that attempts to model software development as a **great translation exercise from human thought to running code**. It models not just the code, but the process by which code is created and the human doing the creation him/herself. It recognizes that there are multiple layers of abstraction and optimization involved in creating *acceptable* software and attempts to model that too. Further, it recognizes that change is inevitable, that software models change and specifically that change usually crosses domain (function, program, component, process, network) boundaries - and attempts to model that too.
 
 It is intended to:
 
