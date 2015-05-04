@@ -41,6 +41,7 @@ In response to these ideas, Halo has or does this:
 
 * Everything is represented as a **graph**, in a Graphviz-like syntax. Everything = code, data, docs.
 * Everything has IDs which act as names, a la git's blob hashes. Aliases are allowed, however.
+* Graphs are stored and used via contexts, which are sources or sinks for graph data. The default contexts are `file` - the file system and `mem` - the memory itself.
 * Executors are represented by **actions**. Executors run actions in Halo.
 * The layers at each level of abstraction are directly represented in Halo:
     * Comments represent the Human (or Meta) level
