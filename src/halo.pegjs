@@ -20,27 +20,41 @@
 			}
 		}
 	}
-}
 
+	function containsIgnore(v){
+		return v.attrs.map['ignore'] || v.attrs.map['nop'];
+	}
+}
 
 
 start 	= _ v:value _								{ return v; }
 
 _ "ws"	= [ \t\r\n]*
 value 	= _ c:cmt* _ a:alias? _ v:(node / graph) _	{ /*console.log(v);*/
-														return {
-															alias	:a,
-															comments:c,
-															type	:v.type,
-															attrs	:v.attrs,
-															value	:v.value
-														};
+														if(!containsIgnore(v))
+															return {
+																alias	:a,
+																comments:c,
+																type	:v.type,
+																attrs	:v.attrs,
+																value	:v.value
+															};
+														else
+															return {
+																alias	: '',
+																comments: [],
+																attrs	:	{
+																	type	: 'attrs',comments:[],
+																	attrs	: [{type:'tag',tag:'ignore',comments:[]}]
+																},
+																value	: {}
+															};
 													}
 
 cmt   	= _ "/*" cc:cchar* "*/" _ 					{ return cc.join(''); }
 		/ _ "//" cl:clchar* [\r\n]+ _				{ return cl.join(''); }
 alias =  _ ":" _ al:identifier _  					{ /*console.log('al:'+al);*/ return al; }
-graph = _ attrs:attrs? _ "{" _ e:entry* _ "}" _		{ return {type:'graph', value:e, attrs:attrs ? attrs: {} }; }
+graph = _ attrs:attrs? _ "{" _ e:entry* _ "}" _		{ return {type:'graph', value:e, attrs:attrs ? attrs: { map:{} } }; }
 node = v:nvalue attrs:attrs?						{
 														attrs = attrs ? attrs : {};
 														attrs.attrs = attrs.attrs? attrs.attrs : [];
