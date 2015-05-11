@@ -3,11 +3,22 @@ The Halo programming language User Guide
 
 # Overview
 
-**Halo** is an experimental programming language that attempts to model software development as a **great translation exercise from human thought to running code**. It models not just the code, but the process by which code is created and the human doing the creation him/herself. It recognizes that there are multiple layers of abstraction and optimization involved in creating *acceptable* software and attempts to model that too. Further, it recognizes that change is inevitable, that software models change and specifically that change usually crosses domain (function, program, component, process, network) boundaries - and attempts to model that too.
+**Halo** is an experimental meta-programming language that parasitically models the creation, modification and overall lifecycle of component-based multi-lingual applications. That's a lot of buzzwords, so let's break it down:
+
+* **experimental**: because I dont know if this will all work out in the end, or be any different than *one more wrapper*. We'll see.
+* **parasitically**: Halo live atop a host language and therefore doesnt have a standard lib, framework or runtime of its own. It uses the host langauge for all of these; making it a parasite.
+* **meta-**: As in "about" programming, not "programs writing programs". There's some of the latter, but its secondary to the former.
+* **programming**: Halo is turing complete in a very primitive sense, so concievably it can be used for programming directly, but that's not its primary intent.
+* **lifecycle**: Means everything from inception to sunset, not just code to deployment.
+* **component-based**: Halo's definition of component is very lax: anything callable in the base language is a component.
+* **multi-lingual**: Halo supports applications written in multiple languages. 
+
+
+Put grandiosely, Halo models software development as a **great translation exercise from human thought to running code**. It models not just the code, but the process by which code is created and the human doing the creation him/herself. It recognizes that there are multiple layers of abstraction and optimization involved in creating *acceptable* software and attempts to model that too. Further, it recognizes that change is inevitable, that software models change and specifically that change usually crosses domain (function, program, component, process, network) boundaries - and attempts to model that too.
 
 ## The Big Ideas(TM)
 
-* Everything is a graph - data, code and documents related to code.
+* Everything is a graph - data, code and documents about code.
 * Programs are descriptions of processes as graph data, which are "run" by an executor by traversing the graph.
 * Executors can be machines or humans; software development is the grand exercise of minimizing the role of human executors.
 * Running programs and their data can also be represented as graphs; and changes in data and code that's running can be represented as versioned data.
@@ -27,10 +38,10 @@ The Halo programming language User Guide
 * Modeling software change *in the language* is therefore a good thing(TM) since some of the losses can be recouped by storing metadata about how and why the change was made, reducing [Snapshot based code](http://tt2n.blogspot.com/2011/04/evolutionary-vs-snapshot-development.html)
 * Further, modeling the process by which software is created and changed *in the language*, becomes a good thing(TM) as a since it helps the automation of change.
 * Applications are typically collections of programs/services and regularly use multiple languages and executors. Modeling the multi-lingual and multi-process nature of applictions *in the language* is required to extend the concepts above to real-world applications.
-
+* A language attempting to glue together applications written in multiple languages should introduce as few syntax elements as possible and allow for different styles of computation to be represented and reused instead of recreating those styles within itself.
 
 ## ... and some smaller ideas too
-These ideas fix some small annoyance or purpose some small best practice:
+These ideas fix some small annoyance or purport some small best practice:
 
 * No comments without code.
 * No misusing comments to hide code, use tags to mark code as ignorable instead.
@@ -39,14 +50,14 @@ These ideas fix some small annoyance or purpose some small best practice:
 ## Halo features
 In response to these ideas, Halo has or does this:
 
-* Everything is represented as a **graph**, in a Graphviz-like syntax. Everything = code, data, docs.
+* Everything is represented as a **graph**, in a [Graphviz-like syntax](http://graphviz.org/Documentation.php). Everything = code, data, docs.
 * Everything has IDs which act as names, a la git's blob hashes. Aliases are allowed, however.
 * Graphs are stored and used via contexts, which are sources or sinks for graph data. The default contexts are `file` - the file system and `mem` - the memory itself.
 * Executors are represented by **actions**. Executors run actions in Halo.
 * The layers at each level of abstraction are directly represented in Halo:
     * Comments represent the Human (or Meta) level
     * Nodes, graphs and edges represent the application
-    * Nodes with quoted strings (or appropriately attributed nodes) represent `eval`-ed language code.
+    * Atomic nodes (optionally double quoted if spaces are required) or with the lang attribute represent `eval`-ed language code.
     * Nodes with back-quoted strings (or appropriately attributed nodes) represent `exec`-ed language code.
 * To keep the definition of "component" and "call" generic, Halo adds no additional syntax or library of its own. Instead it defines that:
     * any node is a potential component call

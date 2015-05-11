@@ -1,14 +1,18 @@
 The HALO Programming Language
 ==============================
 
-**Halo** is an experimental programming language that attempts to model software development as a **great translation exercise from human thought to running code**. It models not just the code, but the process by which code is created and the human doing the creation him/herself. It recognizes that there are multiple layers of abstraction and optimization involved in creating *acceptable* software and attempts to model that too. Further, it recognizes that change is inevitable, that software models change and specifically that change usually crosses domain (function, program, component, process, network) boundaries - and attempts to model that too.
+**Halo** is an experimental meta-programming language that parasitically models the creation, modification and overall lifecycle of component-based multi-lingual applications. That's a lot of buzzwords, so let's break it down:
 
-It is intended to:
+* **experimental**: because I dont know if this will all work out in the end, or be any different than *one more wrapper*. We'll see.
+* **parasitically**: Halo live atop a host language and therefore doesnt have a standard lib, framework or runtime of its own. It uses the host langauge for all of these; making it a parasite.
+* **meta-**: As in "about" programming, not "programs writing programs". There's some of the latter, but its secondary to the former.
+* **programming**: Halo is turing complete in a very primitive sense, so concievably it can be used for programming directly, but that's not its primary intent.
+* **lifecycle**: Means everything from inception to sunset, not just code to deployment.
+* **component-based**: Halo's definition of component is very lax: anything callable in the base language is a component.
+* **multi-lingual**: Halo supports applications written in multiple languages. 
 
-* Enable full-lifecycle representation of all coding artifacts - from design to maintenance and beyond.
-* Enable cross-language code analysis for dependency, quality, etc.
-* Enable building multi-language component-based software.
-* Enable large scale change of software
+Put grandiosely, Halo models software development as a **great translation exercise from human thought to running code**. It models not just the code, but the process by which code is created and the human doing the creation him/herself. It recognizes that there are multiple layers of abstraction and optimization involved in creating *acceptable* software and attempts to model that too. Further, it recognizes that change is inevitable, that software models change and specifically that change usually crosses domain (function, program, component, process, network) boundaries - and attempts to model that too.
+
 
 Status
 ------

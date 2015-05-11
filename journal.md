@@ -194,3 +194,7 @@ Also, need to be mindful of writing verbose text: I've assigned myself only 2 da
 **Sat May  2 09:44:50 2015** : finished fixing the ideas section - at least for now. Still not happy with the difference between the readme and the userguide top section, but leaving it as is for now.
 
 **Sun May  3 01:59:14 2015** : finally merged the two sections.
+
+**Mon May  4 09:00:48 2015** : was rewriting the overview again to rebadge the language as an application lifecycle language instead of just programming.
+
+**Mon May 11 17:41:18 2015** : Rewritten.
