@@ -31,6 +31,9 @@ The todo list
 					- [X] tags
 			- [X] Comments
 			- [X] ignore/nop tag
+			- [] edges
+				- [] basic edges
+				- [] no src edges
 			- [X] implement all of the above.
 				- [X] implement existing functionality
 				- [X] implement new syntax envisioned
