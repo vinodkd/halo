@@ -32,8 +32,14 @@ The todo list
 			- [X] Comments
 			- [X] ignore/nop tag
 			- [] edges
-				- [] basic edges
-				- [] no src edges
+				- [X] basic edges
+				- [X] no src edges
+				- [X] multi edge arc
+					- [] implement this in parser. right now parsing generates multiple edges from one src
+				- [X] mutliple edges from one src node
+					- [] implement generic version of multiple edge instead of just parallel and alternative.
+					- [] recode ssi.js to use alternative style.
+				- [] back edge
 			- [X] implement all of the above.
 				- [X] implement existing functionality
 				- [X] implement new syntax envisioned
