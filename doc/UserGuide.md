@@ -318,8 +318,60 @@ If you're used to commenting out code to prevent it from being used, you can use
 
 In this case, nodeB and nodeD will be parsed but ignored from further processing.
 
+[../test/edges.halo](#Edges "save:")
 ## Edges
 
+Halo edges represent relationships between values. The syntax is borrowed again from Graphviz and in its simplest sense, looks similar to Graphviz edges. For example:
+
+    :edges {
+        {
+            a b
+            a --> b
+        }
+
+You can describe the relationship by putting text in the arrow, like so:
+
+        :couple{
+            man
+            woman
+            man -weds-> woman
+        }
+
+... which would be the equivalent of the `label` attribute in Graphviz. You can still add other attributes to edges just like you'd do for nodes. For example:
+
+        :couple{
+            man
+            woman
+            man -weds-> woman[on="dec 25th",#miami]
+        }
+    }
+
+As you can see, edge attributes work the same way as node attributes with name-value pairs and tags.
+
+[../test/no_source_edge.halo](#Edges with no source "save:")
+### Edges with no source
+Edges can also be from the current (graph) node and therefore not present a source node at all, like so:
+
+    {
+        :first nodeA
+        :second {
+            nodeB1
+            nodeB2
+            --> :first
+        }
+    }
+
+[../test/multi_edge_arc.halo](#Multi Edge Arcs "save:")
+### Multi Edge Arcs
+Nodes and relations between them can also be presented as multi-edge arcs, like so:
+
+    {
+        a -calls-> b -calls-> c -calls-> d -calls-> e
+    }
+
+Again, this is syntax that's similar to Graphviz.
+
+### Edge Endpoints and references
 # Contexts and the `run` Action
 # Human Actions
 # Prototypes and Halo as a documentation language

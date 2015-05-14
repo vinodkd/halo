@@ -73,33 +73,37 @@ nvalue = e:eqstring									{ return {value:e,type:"e"}; }
 cchar = (!"*/") . 									{ return text(); }
 clchar = (![\r\n]) .								{ return text(); }
 identifier = id:[a-z,A-Z,0-9_]+						{ return text(); }
-entry = _ c:(edge / value) _							{ return c; }
+entry = _ c:(edge / value) _						{ return c; }
 eqstring = _ '`' chars: neqchar* '`' _				{ return chars.join(''); }
 number = "-"? [0-9\.]+ [eE]? "-"? [0-9\.]* 			{ return text(); }
 text = _ t:(nqstring/qstring) _						{ return t; }
 attrs = c:cmt* _ "[" _ attrs:attr+ _ "]" _			{ return {type:'attrs',comments:c, attrs:attrs, map:createMap(attrs)}; }
 
 edge = c:cmt* roe:restOfEdge+						{ return {type:'edge', comments:c,        targets: roe}; }
-	 / c:cmt* s:text roe:restOfEdge+				{ return {type:'edge', comments:c, src:s, targets: roe}; }
+	 / c:cmt* s:endPoint roe:restOfEdge+			{ return {type:'edge', comments:c, src:s, targets: roe}; }
 neqchar = !('`') . 									{ return text(); }
 nqstring = s:nwchar+								{ return s.join('');}
 qstring = '"' s:nqchar+ '"'							{ return s.join('');}
 attr = c:cmt* _ a:(tag / nvpair) _ ","? _			{ /*console.log(a);*/a.comments = c; return a; }
 
+endPoint = v:nvalue 								{ return {type:'value', value:v}; }
+		 / a:alias 									{ return {type:'ref', value:a}; }
 restOfEdge = e:(fwdRel/retRel) a:attrs? _ 			{ return { opr:e.opr, rel:e.rel, dest:e.dest, attrs: a}; }
 nwchar = ![ \t\n\r\{\}\[\]\:=#\>\/\|\*\",\-] . 		{ return text(); }
 nqchar = !('"') . 									{ return text(); }
 nvpair = _ n:name _ "=" _ v:val _ 					{ return {type:'nv',name:n,value:v}; }
 tag = "#" t:text 									{ return {type:'tag', tag:t}; }
 
-fwdRel = opr:fwdPrefix r:desc "->" d:text 			{ return { opr:opr,rel:r,dest:d }; }
+fwdRel = opr:fwdPrefix r:desc "->" d:endPoint 		{ return { opr:opr,rel:r,dest:d }; }
 retRel = "<-" r:desc "-" 							{ return { opr:'ret',rel:r}; }
 fwdPrefix = opr:(altOpr
 				 /parallelOpr
-				 /generic)							{ return opr; }
+				 /medge
+				 /mnode)							{ return opr; }
 altOpr = "/-" 										{ return 'alt'; }
 parallelOpr = "||-" 								{ return 'par'; }
-generic = "-" 										{ return 'rel'; }
+medge "Multi Edge" = "+-" 							{ return 'medge'; }
+mnode "Multi Node" = "-" 							{ return 'rel'; }
 desc = (text / "") 									{ return text(); }
 
 name = text

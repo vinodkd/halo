@@ -17,8 +17,8 @@ It does this in the simplest possible way:
 			// condition is evaluated in the base language
 			"expr 2 \> 1"
 			// edges to other nodes in the sequence
-			--> stepD
-			--> stepA[test=blah]
+			--> :stepD
+			--> :stepA[test=blah]
 		}
 	:stepD "echo done" [lang=base]
 	}

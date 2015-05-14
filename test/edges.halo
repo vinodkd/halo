@@ -1,0 +1,18 @@
+:edges {
+    {
+        a b
+        a --> b
+    }
+
+    :couple{
+        man
+        woman
+        man -weds-> woman
+    }
+
+    :couple{
+        man
+        woman
+        man -weds-> woman[on="dec 25th",#miami]
+    }
+}
