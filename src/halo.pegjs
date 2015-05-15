@@ -81,7 +81,7 @@ attrs = c:cmt* _ "[" _ attrs:attr+ _ "]" _			{ return {type:'attrs',comments:c, 
 
 edge = c:cmt* roe:restOfEdge+						{ return {type:'edge', comments:c,        targets: roe}; }
 	 / c:cmt* s:endPoint roe:restOfEdge+			{ return {type:'edge', comments:c, src:s, targets: roe}; }
-neqchar = !('`') . 									{ return text(); }
+neqchar = [^`] 										{ return text(); }
 nqstring = s:nwchar+								{ return s.join('');}
 qstring = '"' s:('\\"' / nqchar )* '"'				{ return s.join('');}
 attr = c:cmt* _ a:(tag / nvpair) _ ","? _			{ /*console.log(a);*/a.comments = c; return a; }
