@@ -13,4 +13,6 @@
     hello world
     // string: this is one node
     "hello world"
+    // strings with escaped quotes
+    "he said \"here you go\", and passed the salt."
 }

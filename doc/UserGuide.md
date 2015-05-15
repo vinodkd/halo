@@ -131,6 +131,8 @@ The simplest nodes are atomic symbols, like so:
         hello world
         // string: this is one node
         "hello world"
+        // strings with escaped quotes
+        "he said \"here you go\", and passed the salt."
     }
 
 The simplest node is an atom - a symbol represented by an unquoted string of characters. Strings are nodes too, and represented with double-quotes surrounding them.
