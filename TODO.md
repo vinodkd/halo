@@ -22,7 +22,7 @@ The todo list
 				- [] compound nodes
 					- [X] anonymous nodes
 					- [X] node alias
-					- [] parser cleanup
+					- [X] parser cleanup
 						- [X] rename al to alias
 						- [X] remove "name" from node and graph output trees, instead combine body and name into value.
 							- [X] fix issues in halo and ssi that come out of this.
