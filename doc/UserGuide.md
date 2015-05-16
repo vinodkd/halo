@@ -396,7 +396,6 @@ There are many aspects of this example that will be discussed later, but here ar
 1. All children of `:sequence` are assumed to flow from one to the other in document order, so no explicit edges are needed between `:stepA` and `:stepB`, for example.
 1. An `:if`, however, does need two edges to the appropriate target nodes.
 
-[../test/no_source_edge.halo](#Edges with no source "save:")
 ### Edges with no source
 
 As can be seen above, edges can also be from the current (graph) node and therefore not present a source node at all. This is to allow flow of execution from inside a subgraph without having to create a node for it.
