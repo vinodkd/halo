@@ -198,3 +198,8 @@ Also, need to be mindful of writing verbose text: I've assigned myself only 2 da
 **Mon May  4 09:00:48 2015** : was rewriting the overview again to rebadge the language as an application lifecycle language instead of just programming.
 
 **Mon May 11 17:41:18 2015** : Rewritten.
+
+**Thu May 14 09:01:41 2015** : Reorged the doc structure a bit. Added sections on edges. need to carve out a separate "using syntax for code" section.
+
+**Thu May 14 18:25:13 2015** : was finishing up the reorg with syntax for code
+

@@ -69,6 +69,7 @@ In response to these ideas, Halo has or does this:
 ## Halo use cases
 
 Halo can be used to:
+
 * Enable full-lifecycle representation of all coding artifacts - from design to maintenance and beyond.
 * Enable cross-language code analysis for dependency, quality, etc.
 * Enable building multi-language component-based software.
@@ -78,7 +79,27 @@ Halo can be used to:
 
 Halo is very much an "assembled" language - almost everything in Halo has been built and/or tried before; so if you find some feature of Halo reminding you of some language of the past, its most probably true. There was just a wealth of ideas from the past that Halo couldnt help but borrow!
 
-# Basic Data and Actions
+# Chapter 1: The `read` action and Basic Data
+
+## The `read` action
+Like most programming languages, you "run" things in halo by passing it a file with your source in it, like so:
+
+    halo source.halo
+
+This is equivalent to:
+
+    halo read source.halo
+
+... that is, `read` is the default action in Halo, and all it does is to parse `source.halo` and report errors if any. Feel free to `read` any of the test files (or your own source) as you read through this guide.
+
+As you probably guessed, actions are invoked on data using the command
+
+    `halo [action] sourcefile`
+
+More built-in actions will be introduced later in this guide, but for now, `read` should suffice.
+
+# Basic Data
+Halo represents data as graphs. Graphs have nodes, edges and subgraphs. These concepts are described below.
 
 ## Graphs
 
@@ -94,7 +115,7 @@ The syntax draws a lot of inspiration from [Graphviz](http://www.graphviz.org)'s
 Note that there are a few differences:
 
 * You dont need to call out that they are digraphs. All halo graphs are directed graphs by default.
-* Halo graphs dont have names; instead they have aliases, which are similar to tags.
+* Halo graphs dont have names; instead they have aliases, which are similar to git tags.
 * Halo graphs dont need to have aliases at all, they can be anonymous.
 
 So the following graph is perfectly valid.
@@ -160,7 +181,7 @@ Halo enhances the attribute concept, however, with tags. Tags are categories tha
 
 Yes, the syntax is borrowed from hashtags. They are used in Halo to filter nodes out, essentially and we'll soon see an example of this.
 
-### Subgraphs
+## Subgraphs
 
 Anything more complicated than a symbol, number or string must be represented as a Subgraph and they're depicted like so:
 
@@ -176,10 +197,53 @@ Anything more complicated than a symbol, number or string must be represented as
 
 In general, anything that "contains" things or has inner structure must go into a subgraph; so this construct can be used to represent standard data structures like arrays, hashtables and objects.
 
-[../test/arrays.halo](#Arrays "save:")
-#### Arrays
+[../test/edges.halo](#Edges "save:")
+## Edges
 
-Arrays work because all nodes in Halo have an index assigned to them based on document order.
+Halo edges represent relationships between values. The syntax is borrowed again from Graphviz and in its simplest sense, looks similar to Graphviz edges. For example:
+
+    :edges {
+        {
+            a b
+            a --> b
+        }
+
+Note, however, that since all Halo graphs are directed graphs, you dont have the `--` edge.
+
+Also, there are two dashes instead of one to let you describe the relationship by putting text in the arrow, like so:
+
+        :couple{
+            man
+            woman
+            man -weds-> woman
+        }
+
+... which would be the equivalent of the `label` attribute in Graphviz. You can still add other attributes to edges just like you'd do for nodes. For example:
+
+        :couple{
+            man
+            woman
+            man -weds-> woman[on="dec 25th",#miami]
+        }
+    }
+
+As you can see, edge attributes work the same way as node attributes with name-value pairs and tags.
+
+[../test/multi_edge_arc.halo](#Multi Edge Arcs "save:")
+### Multi Edge Arcs
+Nodes and relations between them can also be presented as multi-edge arcs, like so:
+
+    {
+        a -calls-> b -calls-> c -calls-> d -calls-> e
+    }
+
+Again, this is syntax that's similar to Graphviz.
+
+## Using Halo syntax to represent common data structures
+[../test/arrays.halo](#Arrays "save:")
+### Arrays
+
+All nodes in Halo have an index assigned to them based on document order. This makes creating arrays in Halo easy. The syntax is a bit different from "regular" syntax in that it doesnt use `[]`, but that's in keeping with the general idea that all containers are graphs. 
 
     // arrays.halo
     // all nodes have a natural index assigned to them.
@@ -209,7 +273,8 @@ Arrays work because all nodes in Halo have an index assigned to them based on do
     }
 
 [../test/hashtable.halo](#Hashtables "save:")
-#### Hashtables
+### Hashtables
+Aliases are essentially keys, so creating hashtables is also pretty natural. For simple name value pairs, you could just use attributes, as shown in the `hashtable` subgraph below.
 
     //hashtable.halo
     :hashtables{
@@ -238,7 +303,9 @@ Arrays work because all nodes in Halo have an index assigned to them based on do
     }
 
 [../test/object.halo](#Objects "save:")
-#### Objects
+### Objects
+
+Combining aliases and nested containers makes creating objects easy as well, in (what is hopefully) a json-like representation.
 
     //object.halo
     :objects{
@@ -274,8 +341,67 @@ Arrays work because all nodes in Halo have an index assigned to them based on do
         }
     }
 
+## Using Halo syntax to represent code
 
-### Some comments about comments
+### Values as lines of code
+The Halo syntax is built to allow for nodes to be considered as lines of code, or more philosophically, units of execution. Since Halo aspires to be a multi-language system, however, it prescribes no specific syntax for this unit of execution and instead leaves it to the underlying language to handle. The expectation is that each node roughly corresponds to a component call.
+
+The syntax does, however, have two affordances:
+
+1. Nodes can be double-quoted to escape the Halo syntax like so:
+
+        {
+            "System.out.println(\"hello world\")";
+        }
+
+1. Nodes can be backquoted (similar to ruby et al) to represent execution in the underlying base platform, eg, the OS, like so:
+
+        :fakebash {
+            `echo hello world`
+        }
+
+### Graphs and subgraphs as containers of code
+Since nodes are lines of code, it follows that graphs and subgraphs are containers of code, like so: 
+
+        :fakejava {
+            :main{
+                "System.out.println(\"hello world\")";
+            }
+        }
+
+Halo doesnt specify whether the container is a function, method, class, component or process - it merely calls out the fact that the code is contained. Its upto an appropriate action to ascribe meaning to the container and its contents.
+
+### Edges as execution paths
+Considering nodes are lines of code and subgraphs are containers, it follows naturally that edges represent execution paths. However, this is an interpretation external to the syntax, ie, the syntax allows for edges to be created, but its upto an appropriate action to ascribe a particular meaning to edges. For example, a simple turing-complete language called "ssi" (short for sequence, selection, iteration) represents a basic program like so:
+
+	:m1 [lang = ssi] {
+		:sequence{
+			:stepA "ls -al" [lang=os]
+			// this shows two steps in the same line
+			:stepB  "ps -ef" [lang = os] "df -h" [lang=os]
+			:if{
+				// condition is evaluated in the base language
+				"expr 2 \> 1"
+				// edges to other nodes in the sequence
+				--> :stepD
+				--> :stepA
+			}
+			:stepD "echo done" [lang=base]
+		}
+	}
+
+There are many aspects of this example that will be discussed later, but here are two key points related to edges:
+
+1. This language assumes that there is a single subgraph aliased `:sequence` for it to act on
+1. All children of `:sequence` are assumed to flow from one to the other in document order, so no explicit edges are needed between `:stepA` and `:stepB`, for example.
+1. An `:if`, however, does need two edges to the appropriate target nodes.
+
+[../test/no_source_edge.halo](#Edges with no source "save:")
+### Edges with no source
+
+As can be seen above, edges can also be from the current (graph) node and therefore not present a source node at all. This is to allow flow of execution from inside a subgraph without having to create a node for it.
+
+### Comments
 
 Comments in Halo look similar to comments in the C-family of programming languages.
 
@@ -302,14 +428,11 @@ However, there's one deviation from other languages: *comments are tied to nodes
         // the node above is awesome!
     }
 
-
-
 ... is invalid syntax and will fail in parsing.
 
-[../test/commenting_code.halo](#Commenting code out "save:")
-
-#### Commenting code out
-If you're used to commenting out code to prevent it from being used, you can use the `#nop` or `#ignore` tags instead, like so:
+[../test/commenting.halo](#Commenting to ignore from procesing "save:")
+#### Commenting to ignore from processing
+If you're used to commenting out source text to prevent it from being parsed or processed, you can use the `#nop` or `#ignore` tags instead, like so:
 
     {
         nodeA
@@ -320,61 +443,16 @@ If you're used to commenting out code to prevent it from being used, you can use
 
 In this case, nodeB and nodeD will be parsed but ignored from further processing.
 
-[../test/edges.halo](#Edges "save:")
-## Edges
+## Using Halo syntax for documents
 
-Halo edges represent relationships between values. The syntax is borrowed again from Graphviz and in its simplest sense, looks similar to Graphviz edges. For example:
+TBD
 
-    :edges {
-        {
-            a b
-            a --> b
-        }
+# Chapter 2: The `run` Action and Contexts
 
-You can describe the relationship by putting text in the arrow, like so:
+## The `run` action
 
-        :couple{
-            man
-            woman
-            man -weds-> woman
-        }
+## Contexts
 
-... which would be the equivalent of the `label` attribute in Graphviz. You can still add other attributes to edges just like you'd do for nodes. For example:
-
-        :couple{
-            man
-            woman
-            man -weds-> woman[on="dec 25th",#miami]
-        }
-    }
-
-As you can see, edge attributes work the same way as node attributes with name-value pairs and tags.
-
-[../test/no_source_edge.halo](#Edges with no source "save:")
-### Edges with no source
-Edges can also be from the current (graph) node and therefore not present a source node at all, like so:
-
-    {
-        :first nodeA
-        :second {
-            nodeB1
-            nodeB2
-            --> :first
-        }
-    }
-
-[../test/multi_edge_arc.halo](#Multi Edge Arcs "save:")
-### Multi Edge Arcs
-Nodes and relations between them can also be presented as multi-edge arcs, like so:
-
-    {
-        a -calls-> b -calls-> c -calls-> d -calls-> e
-    }
-
-Again, this is syntax that's similar to Graphviz.
-
-### Edge Endpoints and references
-# Contexts and the `run` Action
 # Human Actions
 # Prototypes and Halo as a documentation language
 # Halo as an analysis language
