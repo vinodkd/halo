@@ -430,7 +430,7 @@ However, there's one deviation from other languages: *comments are tied to nodes
 ... is invalid syntax and will fail in parsing.
 
 [../test/commenting.halo](#Commenting to ignore from procesing "save:")
-#### Commenting to ignore from processing
+#### Commenting code out
 If you're used to commenting out source text to prevent it from being parsed or processed, you can use the `#nop` or `#ignore` tags instead, like so:
 
     {
