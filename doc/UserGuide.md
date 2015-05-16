@@ -442,10 +442,6 @@ If you're used to commenting out source text to prevent it from being parsed or 
 
 In this case, nodeB and nodeD will be parsed but ignored from further processing.
 
-## Using Halo syntax for documents
-
-TBD
-
 # Chapter 2: The `run` Action and Contexts
 
 ## The `run` action
