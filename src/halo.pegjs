@@ -89,7 +89,7 @@ attr = c:cmt* _ a:(tag / nvpair) _ ","? _			{ /*console.log(a);*/a.comments = c;
 endPoint = v:nvalue 								{ return {type:'value', value:v}; }
 		 / a:alias 									{ return {type:'ref', value:a}; }
 restOfEdge = e:(fwdRel/retRel) a:attrs? _ 			{ return { opr:e.opr, rel:e.rel, dest:e.dest, attrs: a}; }
-nwchar = ![ \t\n\r\{\}\[\]\:=#\>\/\|\*\",\-] . 		{ return text(); }
+nwchar = [^ \t\n\r\{\}\[\]\:=#\>\/\|\*\",\-] 		{ return text(); }
 nqchar = [^"]	 									{ return text(); }
 nvpair = _ n:name _ "=" _ v:val _ 					{ return {type:'nv',name:n,value:v}; }
 tag = "#" t:text 									{ return {type:'tag', tag:t}; }
