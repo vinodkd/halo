@@ -106,5 +106,5 @@ medge "Multi Edge" = "+-" 							{ return 'medge'; }
 mnode "Multi Node" = "-" 							{ return 'rel'; }
 desc = (text / "") 									{ return text(); }
 
-name = text
+name = identifier
 val = text
