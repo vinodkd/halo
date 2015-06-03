@@ -1,0 +1,15 @@
+{
+	var x=51;
+	:stepA "var y=34" [lang=os]
+	console.log('hello dear world')[lang=js] console.log('blah') [lang=js]
+	console.log('hello dear world'); console.log('blah')
+	"console.log('hello dear world'); console.log(\"blah\")"
+	console.log('be well');
+	go home yankees
+	"no you go home"
+	"on the one hand; peace"
+	on the other hand\; war
+	console.log(x);
+	` ls
+	-al`
+}

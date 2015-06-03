@@ -55,7 +55,19 @@ cmt   	= _ "/*" cc:cchar* "*/" _ 					{ return cc.join(''); }
 		/ _ "//" cl:clchar* [\r\n]+ _				{ return cl.join(''); }
 alias =  _ ":" _ al:identifier _  					{ /*console.log('al:'+al);*/ return al; }
 graph = _ attrs:attrs? _ "{" _ e:entry* _ "}" _		{ return {type:'graph', value:e, attrs:attrs ? attrs: { map:{} } }; }
-node = v:nvalue attrs:attrs?						{
+node = v:nvalue EON 								{
+														var attrs = {};
+														attrs.attrs = attrs.attrs? attrs.attrs : [];
+														attrs.comments = attrs.comments ? attrs.comments : [];
+
+														if(v.type == 'e')
+															attrs.attrs.push({type:'nv',name:'lang',value:'base'});
+														attrs.map = {};
+														updateMap(attrs.map,attrs.attrs);
+														// console.log(attrs);
+														return {type:'node',value:v.value,attrs:attrs};
+													}
+	 / v:nvalue attrs:attrs?						{
 														attrs = attrs ? attrs : {};
 														attrs.attrs = attrs.attrs? attrs.attrs : [];
 														attrs.comments = attrs.comments ? attrs.comments : [];
@@ -64,6 +76,7 @@ node = v:nvalue attrs:attrs?						{
 															attrs.attrs.push({type:'nv',name:'lang',value:'base'});
 														attrs.map = {};
 														updateMap(attrs.map,attrs.attrs);
+														// console.log(attrs);
 														return {type:'node',value:v.value,attrs:attrs};
 													}
 nvalue = e:eqstring									{ return {value:e,type:"e"}; }
@@ -77,19 +90,20 @@ entry = _ c:(edge / value) _						{ return c; }
 eqstring = _ '`' chars: neqchar* '`' _				{ return chars.join(''); }
 number = "-"? [0-9\.]+ [eE]? "-"? [0-9\.]* 			{ return text(); }
 text = _ t:(nqstring/qstring) _						{ return t; }
+EON = _ [;\n\r] _
 attrs = c:cmt* _ "[" _ attrs:attr+ _ "]" _			{ return {type:'attrs',comments:c, attrs:attrs, map:createMap(attrs)}; }
 
 edge = c:cmt* roe:restOfEdge+						{ return {type:'edge', comments:c,        targets: roe}; }
 	 / c:cmt* s:endPoint roe:restOfEdge+			{ return {type:'edge', comments:c, src:s, targets: roe}; }
 neqchar = [^`] 										{ return text(); }
-nqstring = s:nwchar+								{ return s.join('');}
+nqstring = s:nwchar+								{ return s.join('').trim();}
 qstring = '"' s:('\\"' / nqchar )* '"'				{ return s.join('');}
 attr = c:cmt* _ a:(tag / nvpair) _ ","? _			{ /*console.log(a);*/a.comments = c; return a; }
 
 endPoint = v:nvalue 								{ return {type:'value', value:v}; }
 		 / a:alias 									{ return {type:'ref', value:a}; }
 restOfEdge = e:(fwdRel/retRel) a:attrs? _ 			{ return { opr:e.opr, rel:e.rel, dest:e.dest, attrs: a}; }
-nwchar = [^ \t\n\r\{\}\[\]\:=#\>\/\|\*\",\-] 		{ return text(); }
+nwchar = [^\n\r\{\}\[\]\:#\>\/\|\*\";\-] 			{ return text(); }
 nqchar = [^"]	 									{ return text(); }
 nvpair = _ n:name _ "=" _ v:val _ 					{ return {type:'nv',name:n,value:v}; }
 tag = "#" t:text 									{ return {type:'tag', tag:t}; }

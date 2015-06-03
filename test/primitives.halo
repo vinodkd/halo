@@ -1,6 +1,6 @@
 :primitives {
     // atoms
-    car plane boat ship
+    car; plane; boat; ship
     // integer
     123
     // signed int
@@ -15,4 +15,6 @@
     "hello world"
     // strings with escaped quotes
     "he said \"here you go\", and passed the salt."
+    // strings with escaped special chars
+    "he said - and I quote - "here you go\"."
 }

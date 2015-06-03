@@ -203,3 +203,28 @@ Also, need to be mindful of writing verbose text: I've assigned myself only 2 da
 
 **Thu May 14 18:25:13 2015** : was finishing up the reorg with syntax for code
 
+**Sat May 16 00:12:16 2015** : was going to reorder chap 2 thus: talk about contexts. when talking about run we should probably implement as graph traversal. on a fork, the current node and its first child are eval'd. if they match from a language pov, that path is taken. next also need to talk about the default language.
+
+**Sat May 16 06:51:18 2015** : just converted the value rule to allow for it to parse till the end of the line or start of attrs or comma. now see how this will be real useful with text, so wondering if comma is a good choice, or if i should reuse one of other reserved symbols, like | or . both wouldnt work when the language is code, but either would work when the language is human.
+
+**Wed May 27 08:20:44 2015** : was thinking of moving to `;` as the delimiter since its the delimiter for graphviz, it works for most c-family languages and is a minor (imo) issue for text - search replace to escape semicolons are an easy pre-step to processing. however was trying to get semicolons to be recognized correctly in the grammar.
+
+**Wed May 27 08:52:10 2015** : So thinking through the syntax a little bit wrt quotes and separators.
+
+Before:
+	- Nodes were delimited by spaces. anything larger than a word had to be quoted with double quotes
+	- single quotes were not special, so were parsed as part of symbol.
+	- double quotes allow escaping the space delimitation. quoted strings count as a single node.
+	- back quotes are special, treated as an OS string.
+Proposed now:
+	- nodes separated by semi colon, end of line or attributes.
+	- single quotes are still not special
+	- double quotes remain as before, used to escape special chars like - when used in strings.
+	- back quotes treated same as before.
+Considered, rejected:
+	- delimited by period. problem with this is that code will not abide by this rule. many languages use it as an object-property separator.
+	- version 2: heredoc style nodes.
+**Wed May 27 17:40:48 2015** : was updating userguide to follow new syntax.
+**Fri May 29 08:55:20 2015** : Was still updating user guide to add semicolons and remove quotes. at line 360
+**Wed Jun  3 05:39:09 2015** : Done updating for semis.
+

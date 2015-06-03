@@ -57,7 +57,7 @@ In response to these ideas, Halo has or does this:
 * The layers at each level of abstraction are directly represented in Halo:
     * Comments represent the Human (or Meta) level
     * Nodes, graphs and edges represent the application
-    * Atomic nodes (optionally double quoted if spaces are required) or with the lang attribute represent `eval`-ed language code.
+    * Atomic nodes (optionally double quoted if special chars are required) or with the lang attribute represent `eval`-ed language code.
     * Nodes with back-quoted strings (or appropriately attributed nodes) represent `exec`-ed language code.
 * To keep the definition of "component" and "call" generic, Halo adds no additional syntax or library of its own. Instead it defines that:
     * any node is a potential component call
@@ -131,7 +131,7 @@ This leads us to the contents of the graphs: nodes and edges.
 
 ## Nodes
 
-In Halo, nodes are essentially values and like Graphviz, they are represented with symbols or strings. They can be used to hold primitive values like shown below.
+In Halo, nodes are essentially values and can be used to hold primitive values like shown below. As in Graphviz, they are represented with strings of characters and can be separated by semicolon. Halo extends the Graphviz syntax, however, by allowing nodes to contain spaces and therefore be delimited by a new line, a semicolon or attributes.
 
 [../test/primitives.halo](#Simple Nodes "save:")
 ### Simple Nodes
@@ -139,26 +139,37 @@ The simplest nodes are atomic symbols, like so:
 
     :primitives {
         // atoms
-        car plane boat ship
+        car
+        plane
+        boat
+        ship
+        // atoms in a single line
+        apple; ball; cat; dog
         // integer
         123
         // signed int
         -123
-        // real
+        // "real"
         123.45
         // e notation
         123.45e-10
-        // strings: the two words are two nodes in halo
+        // strings: this is one node
         hello world
-        // string: this is one node
+        // string: this is also one node, quotes really not required
         "hello world"
         // strings with escaped quotes
         "he said \"here you go\", and passed the salt."
+        // strings with escaped special chars
+        "he said - and I quote - "here you go\"."
+        // nodes separated by attributes
+        ball [color=red] car[make=ferrari]
     }
 
-The simplest node is an atom - a symbol represented by an unquoted string of characters. Strings are nodes too, and represented with double-quotes surrounding them.
+The simplest node string of characters that may be quoted or not. Double quoting strings allows the use of charactoers otherwise reserved for syntax - like `{`,`-`, etc.
 
 Numbers can be represented naturally as shown above but Halo has no number type. All nodes are essentially string values that are passed as-is to the underlying language. More on this later.
+
+Finally, nodes can be separated by their attributes, which are described below.
 
 [../test/attributes.halo](#Attributes "save:")
 ### Attributes
@@ -168,10 +179,10 @@ Nodes can have attributes, which are represented very similar to attributes in G
     {
         car [isA=vehicle,type=land]
         plane [isA=vehicle,type=air]
-        ship [isA=vehicle type=water]
+        ship [isA=vehicle,type=water]
         ....
 
-As you can see, multiple attributes are allowed and can be separated by whitespace or commas.
+As you can see, multiple attributes are allowed and can be separated by commas (no whitespace).
 
 Halo enhances the attribute concept, however, with tags. Tags are categories that you can attach to each node, like so:
 
@@ -179,11 +190,12 @@ Halo enhances the attribute concept, however, with tags. Tags are categories tha
         ferrari [type=vehicle,#awesome,#wishIhadOne]
     }
 
+
 Yes, the syntax is borrowed from hashtags. They are used in Halo to filter nodes out, essentially and we'll soon see an example of this.
 
 ## Subgraphs
 
-Anything more complicated than a symbol, number or string must be represented as a Subgraph and they're depicted like so:
+Anything more complicated than a number or string must be represented as a Subgraph and they're depicted like so:
 
     :graph {
         :subgraph {
@@ -195,7 +207,7 @@ Anything more complicated than a symbol, number or string must be represented as
         }
     }
 
-In general, anything that "contains" things or has inner structure must go into a subgraph; so this construct can be used to represent standard data structures like arrays, hashtables and objects.
+In general, anything that "contains" things or has inner structure must go into a subgraph; so this construct can be used to represent standard data structures like arrays, hashtables and objects. Examples of such use are below.
 
 [../test/edges.halo](#Edges "save:")
 ## Edges
@@ -251,11 +263,11 @@ All nodes in Halo have an index assigned to them based on document order. This m
     :arrays {
         // simple 1D array
         :array1 {
-            1 2 3 4 5
+            1; 2; 3; 4; 5
             //referred above
             6
-            7 8
-            9 10
+            7; 8
+            9; 10
         }
         // another 1-D array shown with each element in its own line. no change in meaning.
         :array2{
@@ -266,9 +278,9 @@ All nodes in Halo have an index assigned to them based on document order. This m
         }
         // a 2D array
         :2darray {
-            { 1 2 3 4 5 }
-            { 11 12 13 14 15 }
-            { 111 112 113 114 115 }
+            { 1; 2; 3; 4; 5 }
+            { 11; 12; 13; 14; 15 }
+            { 111; 112; 113; 114; 115 }
         }
     }
 
@@ -348,10 +360,10 @@ The Halo syntax is built to allow for nodes to be considered as lines of code, o
 
 The syntax does, however, have two affordances:
 
-1. Nodes can be double-quoted to escape the Halo syntax like so:
+1. Halo has very few reserved symbols, namely `{`,`}`,`[`,`]`,`:`,`#`,`>`,`/`,`|`,`*`,`"`,`;` and `-`. This allows most "method call"-like code to be written without quotes, like so:
 
         {
-            "System.out.println(\"hello world\")";
+            System.out.println(\"hello world\");
         }
 
 1. Nodes can be backquoted (similar to ruby et al) to represent execution in the underlying base platform, eg, the OS, like so:
@@ -359,6 +371,9 @@ The syntax does, however, have two affordances:
         :fakebash {
             `echo hello world`
         }
+
+### Language attributes
+
 
 ### Graphs and subgraphs as containers of code
 Since nodes are lines of code, it follows that graphs and subgraphs are containers of code, like so: 
@@ -451,6 +466,6 @@ In this case, nodeB and nodeD will be parsed but ignored from further processing
 # Human Actions
 # Prototypes and Halo as a documentation language
 todo: include multi edge nodes here
+
 # Halo as an analysis language
 # Meta data and meta code
-
