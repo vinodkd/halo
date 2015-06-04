@@ -224,6 +224,7 @@ Proposed now:
 Considered, rejected:
 	- delimited by period. problem with this is that code will not abide by this rule. many languages use it as an object-property separator.
 	- version 2: heredoc style nodes.
+
 **Wed May 27 17:40:48 2015** : was updating userguide to follow new syntax.
 **Fri May 29 08:55:20 2015** : Was still updating user guide to add semicolons and remove quotes. at line 360
 **Wed Jun  3 05:39:09 2015** : Done updating for semis.
