@@ -4,11 +4,11 @@
 :arrays {
     // simple 1D array
     :array1 {
-        1 2 3 4 5
+        1; 2; 3; 4; 5
         //referred above
         6
-        7 8
-        9 10
+        7; 8
+        9; 10
     }
     // another 1-D array shown with each element in its own line. no change in meaning.
     :array2{
@@ -19,8 +19,8 @@
     }
     // a 2D array
     :2darray {
-        { 1 2 3 4 5 }
-        { 11 12 13 14 15 }
-        { 111 112 113 114 115 }
+        { 1; 2; 3; 4; 5 }
+        { 11; 12; 13; 14; 15 }
+        { 111; 112; 113; 114; 115 }
     }
 }

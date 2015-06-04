@@ -1,20 +1,27 @@
 :primitives {
     // atoms
-    car; plane; boat; ship
+    car
+    plane
+    boat
+    ship
+    // atoms in a single line
+    apple; ball; cat; dog
     // integer
     123
     // signed int
     -123
-    // real
+    // "real"
     123.45
     // e notation
     123.45e-10
-    // strings: the two words are two nodes in halo
+    // strings: this is one node
     hello world
-    // string: this is one node
+    // string: this is also one node, quotes really not required
     "hello world"
     // strings with escaped quotes
     "he said \"here you go\", and passed the salt."
     // strings with escaped special chars
     "he said - and I quote - "here you go\"."
+    // nodes separated by attributes
+    ball [color=red] car[make=ferrari]
 }
