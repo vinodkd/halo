@@ -1,14 +1,14 @@
 The HALO Programming Language
 ==============================
 
-**Halo** is an experimental meta-programming language that parasitically models the creation, modification and overall lifecycle of component-based multi-lingual applications. That's a lot of buzzwords, so let's break it down:
+**Halo** is an experimental meta-programming language that parasitically models the creation, modification and overall life cycle of component-based multi-lingual applications. That's a lot of buzzwords, so let's break it down:
 
-* **experimental**: because I dont know if this will all work out in the end, or be any different than *one more wrapper*. We'll see.
-* **parasitically**: Halo live atop a host language and therefore doesnt have a standard lib, framework or runtime of its own. It uses the host langauge for all of these; making it a parasite.
+* **experimental**: because I don't know if this will all work out in the end, or be any different than *one more wrapper*. We'll see.
+* **parasitically**: Halo live atop a host language and therefore doesn't have a standard lib, framework or runtime of its own. It uses the host language for all of these; making it a parasite.
 * **meta-**: As in "about" programming, not "programs writing programs". There's some of the latter, but its secondary to the former.
-* **programming**: Halo is turing complete in a very simple sense, so concievably it can be used for programming directly, but that's not its primary intent.
-* **creation/modification**: Meaning change. Halo models changes made to code and its surrounding artifacts *within the langauage*.
-* **lifecycle**: Means everything in the SDLC from early ideas to sunseting, not just code to deployment.
+* **programming**: Halo is Turing-complete in a very simple sense, so conceivably it can be used for programming directly, but that's not its primary intent.
+* **creation / modification**: Meaning change. Halo models changes made to code and its surrounding artifacts *within the language*.
+* **life cycle**: Means everything in the SDLC from early ideas to sunsetting, not just code to deployment.
 * **component-based**: Components are the smallest unit of code in Halo, although it's definition of component is very lax: anything callable in the base language is a component.
 * **multi-lingual**: Halo recognizes that typical applications are written in multiple languages and allows for that from the ground up.
 
@@ -17,6 +17,8 @@ Put grandiosely, Halo models software development as a **great translation exerc
 Status
 ------
 Halo is currently a prototype of the lofty goals listed above. This prototype is based on nodejs and uses nodejs as the OS and Javascript as the language. I hope to go beyond this platform once the basic use and value of the ideas presented here are proven to be useful.
+
+Also, the prototype itself is being built, so this is very much WIP software at this point.
 
 History
 -------

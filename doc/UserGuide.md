@@ -3,14 +3,14 @@ The Halo programming language User Guide
 
 # Overview
 
-**Halo** is an experimental meta-programming language that parasitically models the creation, modification and overall lifecycle of component-based multi-lingual applications. That's a lot of buzzwords, so let's break it down:
+**Halo** is an experimental meta-programming language that parasitically models the creation, modification and overall life cycle of component-based multi-lingual applications. That's a lot of buzzwords, so let's break it down:
 
-* **experimental**: because I dont know if this will all work out in the end, or be any different than *one more wrapper*. We'll see.
-* **parasitically**: Halo live atop a host language and therefore doesnt have a standard lib, framework or runtime of its own. It uses the host langauge for all of these; making it a parasite.
+* **experimental**: because I don't know if this will all work out in the end, or be any different than *one more wrapper*. We'll see.
+* **parasitically**: Halo live atop a host language and therefore doesn't have a standard lib, framework or runtime of its own. It uses the host language for all of these; making it a parasite.
 * **meta-**: As in "about" programming, not "programs writing programs". There's some of the latter, but its secondary to the former.
-* **programming**: Halo is turing complete in a very simple sense, so concievably it can be used for programming directly, but that's not its primary intent.
-* **creation/modification**: Meaning change. Halo models changes made to code and its surrounding artifacts *within the langauage*.
-* **lifecycle**: Means everything in the SDLC from early ideas to sunseting, not just code to deployment.
+* **programming**: Halo is Turing-complete in a very simple sense, so conceivably it can be used for programming directly, but that's not its primary intent.
+* **creation / modification**: Meaning change. Halo models changes made to code and its surrounding artifacts *within the language*.
+* **life cycle**: Means everything in the SDLC from early ideas to sunsetting, not just code to deployment.
 * **component-based**: Components are the smallest unit of code in Halo, although it's definition of component is very lax: anything callable in the base language is a component.
 * **multi-lingual**: Halo recognizes that typical applications are written in multiple languages and allows for that from the ground up.
 
@@ -23,9 +23,9 @@ Put grandiosely, Halo models software development as a **great translation exerc
 * Executors can be machines or humans; software development is the grand exercise of minimizing the role of human executors.
 * Running programs and their data can also be represented as graphs; and changes in data and code that's running can be represented as versioned data.
 * Programs always have multiple levels of abstraction.
-    * For example, a Java program runs on a C runtime, which runs on a x86 virtual machine which runs on a docker instance, which runs on a physical macbook pro.
+    * For example, a Java program runs on a C runtime, which runs on a x86 virtual machine which runs on a docker instance, which runs on a physical Macbook pro.
 * At every level of abstraction, a program has 4 layers - Human (or Meta), Application, Language and OS (or Base).
-    * For a Java program, Human = human using bash, App = java app, Lang = Java, OS (Base) = Java runtime
+    * For a Java program, Human = human using bash, App = Java app, Lang = Java, OS (Base) = Java runtime
     * For the Java runtime itself: Human (Meta) = human using bash, app = Java program, Lang = C, OS (Base) = actual OS of machine.
     * For the OS: Human (Meta) = Java app, App = Java runtime, lang = System call API, OS (Base) = instruction set of machine.
 * At a particular level of abstraction, **Components** are the smallest pieces of *callable* code. The exact definitions of "component" and "callable" depends on the language being used.
@@ -35,9 +35,9 @@ Put grandiosely, Halo models software development as a **great translation exerc
     * Down the abstraction ladder to make it efficient (optimization)
     * Within the same abstraction layer in response to change in domain logic (sequencing)
     These are lossy processes since they're largely manual.
-* Modeling software change *in the language* is therefore a good thing(TM) since some of the losses can be recouped by storing metadata about how and why the change was made, reducing [Snapshot based code](http://tt2n.blogspot.com/2011/04/evolutionary-vs-snapshot-development.html)
+* Modeling software change *in the language* is therefore a good thing(TM) since some of the losses can be recouped by storing meta data about how and why the change was made, reducing [Snapshot based code](http://tt2n.blogspot.com/2011/04/evolutionary-vs-snapshot-development.html)
 * Further, modeling the process by which software is created and changed *in the language*, becomes a good thing(TM) as a since it helps the automation of change.
-* Applications are typically collections of programs/services and regularly use multiple languages and executors. Modeling the multi-lingual and multi-process nature of applictions *in the language* is required to extend the concepts above to real-world applications.
+* Applications are typically collections of programs/services and regularly use multiple languages and executors. Modeling the multi-lingual and multi-process nature of applications *in the language* is required to extend the concepts above to real-world applications.
 * A language attempting to glue together applications written in multiple languages should introduce as few syntax elements as possible and allow for different styles of computation to be represented and reused instead of recreating those styles within itself.
 
 ## ... and some smaller ideas too
@@ -77,7 +77,7 @@ Halo can be used to:
 
 ## Disclaimer
 
-Halo is very much an "assembled" language - almost everything in Halo has been built and/or tried before; so if you find some feature of Halo reminding you of some language of the past, its most probably true. There was just a wealth of ideas from the past that Halo couldnt help but borrow!
+Halo is very much an "assembled" language - almost everything in Halo has been built and/or tried before; so if you find some feature of Halo reminding you of some language of the past, its most probably true. There was just a wealth of ideas from the past that Halo couldn't help but borrow!
 
 # Chapter 1: The `read` action and Basic Data
 
@@ -114,9 +114,9 @@ The syntax draws a lot of inspiration from [Graphviz](http://www.graphviz.org)'s
 
 Note that there are a few differences:
 
-* You dont need to call out that they are digraphs. All halo graphs are directed graphs by default.
-* Halo graphs dont have names; instead they have aliases, which are similar to git tags.
-* Halo graphs dont need to have aliases at all, they can be anonymous.
+* You don't need to call out that they are digraphs. All halo graphs are directed graphs by default.
+* Halo graphs don't have names; instead they have aliases, which are similar to git tags.
+* Halo graphs don't need to have aliases at all, they can be anonymous.
 
 So the following graph is perfectly valid.
 
@@ -165,7 +165,7 @@ The simplest nodes are atomic symbols, like so:
         ball [color=red] car[make=ferrari]
     }
 
-The simplest node string of characters that may be quoted or not. Double quoting strings allows the use of charactoers otherwise reserved for syntax - like `{`,`-`, etc.
+The simplest node string of characters that may be quoted or not. Double quoting strings allows the use of characters otherwise reserved for syntax - like `{`,`-`, etc.
 
 Numbers can be represented naturally as shown above but Halo has no number type. All nodes are essentially string values that are passed as-is to the underlying language. More on this later.
 
@@ -220,7 +220,7 @@ Halo edges represent relationships between values. The syntax is borrowed again 
             a --> b
         }
 
-Note, however, that since all Halo graphs are directed graphs, you dont have the `--` edge.
+Note, however, that since all Halo graphs are directed graphs, you don't have the `--` edge.
 
 Also, there are two dashes instead of one to let you describe the relationship by putting text in the arrow, like so:
 
@@ -255,7 +255,7 @@ Again, this is syntax that's similar to Graphviz.
 [../test/arrays.halo](#Arrays "save:")
 ### Arrays
 
-All nodes in Halo have an index assigned to them based on document order. This makes creating arrays in Halo easy. The syntax is a bit different from "regular" syntax in that it doesnt use `[]`, but that's in keeping with the general idea that all containers are graphs. 
+All nodes in Halo have an index assigned to them based on document order. This makes creating arrays in Halo easy. The syntax is a bit different from "regular" syntax in that it doesn't use `[]`, but that's in keeping with the general idea that all containers are graphs. 
 
     // arrays.halo
     // all nodes have a natural index assigned to them.
@@ -366,7 +366,7 @@ The syntax does, however, have two affordances:
             System.out.println(\"hello world\");
         }
 
-1. Nodes can be backquoted (similar to ruby et al) to represent execution in the underlying base platform, eg, the OS, like so:
+1. Nodes can be backquoted (similar to ruby et al) to represent execution in the underlying base platform, e.g., the OS, like so:
 
         :fakebash {
             `echo hello world`
@@ -384,10 +384,10 @@ Since nodes are lines of code, it follows that graphs and subgraphs are containe
             }
         }
 
-Halo doesnt specify whether the container is a function, method, class, component or process - it merely calls out the fact that the code is contained. Its upto an appropriate action to ascribe meaning to the container and its contents.
+Halo doesn't specify whether the container is a function, method, class, component or process - it merely calls out the fact that the code is contained. Its up to an appropriate action to ascribe meaning to the container and its contents.
 
 ### Edges as execution paths
-Considering nodes are lines of code and subgraphs are containers, it follows naturally that edges represent execution paths. However, this is an interpretation external to the syntax, ie, the syntax allows for edges to be created, but its upto an appropriate action to ascribe a particular meaning to edges. For example, a simple turing-complete language called "ssi" (short for sequence, selection, iteration) represents a basic program like so:
+Considering nodes are lines of code and subgraphs are containers, it follows naturally that edges represent execution paths. However, this is an interpretation external to the syntax, i.e., the syntax allows for edges to be created, but its up to an appropriate action to ascribe a particular meaning to edges. For example, a simple Turing-complete language called "ssi" (short for sequence, selection, iteration) represents a basic program like so:
 
 	:m1 [lang = ssi] {
 		:sequence{
