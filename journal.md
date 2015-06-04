@@ -212,20 +212,24 @@ Also, need to be mindful of writing verbose text: I've assigned myself only 2 da
 **Wed May 27 08:52:10 2015** : So thinking through the syntax a little bit wrt quotes and separators.
 
 Before:
-	- Nodes were delimited by spaces. anything larger than a word had to be quoted with double quotes
-	- single quotes were not special, so were parsed as part of symbol.
-	- double quotes allow escaping the space delimitation. quoted strings count as a single node.
-	- back quotes are special, treated as an OS string.
+- Nodes were delimited by spaces. anything larger than a word had to be quoted with double quotes
+- single quotes were not special, so were parsed as part of symbol.
+- double quotes allow escaping the space delimitation. quoted strings count as a single node.
+- back quotes are special, treated as an OS string.
+
 Proposed now:
-	- nodes separated by semi colon, end of line or attributes.
-	- single quotes are still not special
-	- double quotes remain as before, used to escape special chars like - when used in strings.
-	- back quotes treated same as before.
+- nodes separated by semi colon, end of line or attributes.
+- single quotes are still not special
+- double quotes remain as before, used to escape special chars like - when used in strings.
+- back quotes treated same as before.
+
 Considered, rejected:
-	- delimited by period. problem with this is that code will not abide by this rule. many languages use it as an object-property separator.
-	- version 2: heredoc style nodes.
+- delimited by period. problem with this is that code will not abide by this rule. many languages use it as an object-property separator.
+- version 2: heredoc style nodes.
 
 **Wed May 27 17:40:48 2015** : was updating userguide to follow new syntax.
+
 **Fri May 29 08:55:20 2015** : Was still updating user guide to add semicolons and remove quotes. at line 360
+
 **Wed Jun  3 05:39:09 2015** : Done updating for semis.
 
