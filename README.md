@@ -38,6 +38,7 @@ Dependencies
 -------------
 Halo uses:
 * literate-programming for its User guide documentation. Install this if you plan to change the documents and/or the sample source contained within.
+
 <!-- 
 * [Graphviz](http://graphviz.org) to visualize its data. If you dont use the `viz` action, you will be unaffected.
  -->
