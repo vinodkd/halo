@@ -22,15 +22,13 @@ History
 -------
 HALO is the public version of a long-running personal project of mine unimaginatively called "plnext" - for the next programming language. There are two pieces in plnext - a [language called **jack**](http://tt2n.blogspot.com/search/label/jack) and an associated [IDE called **fluent**](http://tt2n.blogspot.com/search/label/fluent). I have written a number of blog posts about the grand vision for this programming language and the IDE. Halo is a prototype for jack and may well be what it ultimately becomes. We'll see :).
 
-Download
+Installing Halo
 --------
-Halo is an npm-installable application. Run:
+Currently, you'll have to clone this repo to install halo. With v1.0, however, Halo will be an npm-installable application that can be installed with:
 
 	[sudo] npm install halo
 
-... to install it.
-
-Run:
+Either way, run:
 
 	npm test
 
@@ -38,8 +36,11 @@ Run:
 
 Dependencies
 -------------
-
-Halo uses [Graphviz](http://graphviz.org) to visualize its data. If you dont use the `viz` action, you will be unaffected.
+Halo uses:
+* literate-programming for its User guide documentation. Install this if you plan to change the documents and/or the sample source contained within.
+<!-- 
+* [Graphviz](http://graphviz.org) to visualize its data. If you dont use the `viz` action, you will be unaffected.
+ -->
 
 Documentation
 --------------
